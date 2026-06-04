@@ -19,8 +19,8 @@ interactive:
   thebe_config:
     requestKernel: true
     binderOptions:
-      repo: MohammadBaniAbdElNabi/Linear-programming
+      repo: MohammadBaniAbdElNabi/Book
       ref: main  
 repository:
-  url: https://github.com/MohammadBaniAbdElNabi/Linear-programming  
+  url: https://github.com/MohammadBaniAbdElNabi/Book
   branch: main  
