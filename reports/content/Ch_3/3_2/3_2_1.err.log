@@ -1,0 +1,122 @@
+Traceback (most recent call last):
+  File "C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\jupyter_cache\executors\utils.py", line 58, in single_nb_execution
+    executenb(
+  File "C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\nbclient\client.py", line 1323, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\jupyter_core\utils\__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\asyncio\base_events.py", line 691, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\nbclient\client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\nbclient\client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\nbclient\client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# ========================================
+# Optional: Fully Input-Based Version
+# Run this only if you want users to type arcs manually.
+# ========================================
+
+def solve_max_flow_from_user_input():
+    """
+    Allows the user to type arcs manually.
+
+    Format:
+        A, B, 10
+
+    Type:
+        done
+
+    Then enter source and sink.
+    """
+
+    print("Enter arcs in this format: StartNode, EndNode, Capacity")
+    print("Example: A, B, 10")
+    print("Type 'done' when finished.\n")
+
+    entered_edges = []
+
+    while True:
+        user_input = input("Enter arc: ").strip()
+
+        if user_input.lower() == "done":
+            break
+
+        try:
+            u, v, cap = user_input.split(",")
+            u = u.strip()
+            v = v.strip()
+            cap = float(cap.strip())
+
+            if cap < 0:
+                print("Capacity must be non-negative.")
+                continue
+
+            entered_edges.append((u, v, cap))
+
+        except ValueError:
+            print("Invalid format. Please use: StartNode, EndNode, Capacity")
+
+    if not entered_edges:
+        print("No arcs entered.")
+        return None
+
+    entered_source = input("Enter source node: ").strip()
+    entered_sink = input("Enter sink node: ").strip()
+
+    return solve_and_draw_max_flow(
+        entered_edges,
+        entered_source,
+        entered_sink,
+        title="User-Entered Network — Maximum Flow"
+    )
+
+# To use this version, remove the # from the next line and run the cell:
+solve_max_flow_from_user_input()
+
+------------------
+
+----- stdout -----
+Enter arcs in this format: StartNode, EndNode, Capacity
+Example: A, B, 10
+Type 'done' when finished.
+------------------
+
+[31m---------------------------------------------------------------------------[39m
+[31mStdinNotImplementedError[39m                  Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[9][39m[32m, line 61[39m
+[32m     53[39m     [38;5;28;01mreturn[39;00m solve_and_draw_max_flow(
+[32m     54[39m         entered_edges,
+[32m     55[39m         entered_source,
+[32m     56[39m         entered_sink,
+[32m     57[39m         title=[33m"[39m[33mUser-Entered Network — Maximum Flow[39m[33m"[39m
+[32m     58[39m     )
+[32m     60[39m [38;5;66;03m# To use this version, remove the # from the next line and run the cell:[39;00m
+[32m---> [39m[32m61[39m [43msolve_max_flow_from_user_input[49m[43m([49m[43m)[49m
+
+[36mCell[39m[36m [39m[32mIn[9][39m[32m, line 26[39m, in [36msolve_max_flow_from_user_input[39m[34m()[39m
+[32m     23[39m entered_edges = []
+[32m     25[39m [38;5;28;01mwhile[39;00m [38;5;28;01mTrue[39;00m:
+[32m---> [39m[32m26[39m     user_input = [38;5;28;43minput[39;49m[43m([49m[33;43m"[39;49m[33;43mEnter arc: [39;49m[33;43m"[39;49m[43m)[49m.strip()
+[32m     28[39m     [38;5;28;01mif[39;00m user_input.lower() == [33m"[39m[33mdone[39m[33m"[39m:
+[32m     29[39m         [38;5;28;01mbreak[39;00m
+
+[36mFile [39m[32m~\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\ipykernel\kernelbase.py:1472[39m, in [36mKernel.raw_input[39m[34m(self, prompt)[39m
+[32m   1470[39m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m [38;5;28mself[39m._allow_stdin:
+[32m   1471[39m     msg = [33m"[39m[33mraw_input was called, but this frontend does not support input requests.[39m[33m"[39m
+[32m-> [39m[32m1472[39m     [38;5;28;01mraise[39;00m StdinNotImplementedError(msg)
+[32m   1473[39m [38;5;28;01mreturn[39;00m [38;5;28mself[39m._input_request(
+[32m   1474[39m     [38;5;28mstr[39m(prompt),
+[32m   1475[39m     [38;5;28mself[39m._shell_parent_ident.get(),
+[32m   1476[39m     [38;5;28mself[39m.get_parent([33m"[39m[33mshell[39m[33m"[39m),
+[32m   1477[39m     password=[38;5;28;01mFalse[39;00m,
+[32m   1478[39m )
+
+[31mStdinNotImplementedError[39m: raw_input was called, but this frontend does not support input requests.
+

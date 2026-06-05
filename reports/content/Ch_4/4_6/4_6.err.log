@@ -1,0 +1,197 @@
+Traceback (most recent call last):
+  File "C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\jupyter_cache\executors\utils.py", line 58, in single_nb_execution
+    executenb(
+  File "C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\nbclient\client.py", line 1323, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\jupyter_core\utils\__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\asyncio\base_events.py", line 691, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\nbclient\client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\nbclient\client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\nbclient\client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# ========================================
+# 4.6 Cover Inequalities
+# Example: Finding and Adding a Cover Cut
+# ========================================
+
+!apt-get install -y -qq coinor-cbc
+
+from pyomo.environ import *
+import pandas as pd
+
+# Problem:
+# maximize z = 12x1 + 13x2 + 11x3 + 10x4
+# subject to 12x1 + 13x2 + 12x3 + 11x4 <= 29
+# 0 <= xi <= 1
+
+profits = [12, 13, 11, 10]
+weights = [12, 13, 12, 11]
+capacity = 29
+n = len(profits)
+
+def solve_lp(add_cover_cut=False):
+    model = ConcreteModel()
+    model.I = RangeSet(1, n)
+
+    # LP relaxation: variables are continuous between 0 and 1
+    model.x = Var(model.I, bounds=(0, 1))
+
+    model.obj = Objective(
+        expr=sum(profits[i-1] * model.x[i] for i in model.I),
+        sense=maximize
+    )
+
+    model.capacity = Constraint(
+        expr=sum(weights[i-1] * model.x[i] for i in model.I) <= capacity
+    )
+
+    # Cover cut from the textbook:
+    # x1 + x2 + x3 <= 2
+    if add_cover_cut:
+        model.cover_cut = Constraint(
+            expr=model.x[1] + model.x[2] + model.x[3] <= 2
+        )
+
+    SolverFactory("cbc").solve(model)
+
+    solution = [value(model.x[i]) for i in model.I]
+    objective = value(model.obj)
+
+    return solution, objective
+
+# Step 1: Solve the LP relaxation
+x_lp, z_lp = solve_lp(add_cover_cut=False)
+
+print("=" * 55)
+print("Original LP Relaxation")
+print("=" * 55)
+
+for i, val in enumerate(x_lp, start=1):
+    print(f"x{i} = {val:.4f}")
+
+print(f"z = {z_lp:.4f}")
+
+# Step 2: Check the textbook cover S = {1, 2, 3}
+cover = [1, 2, 3]
+
+cover_weight = sum(weights[i-1] for i in cover)
+cover_lhs = sum(x_lp[i-1] for i in cover)
+cover_rhs = len(cover) - 1
+
+print("\nCover S = {1, 2, 3}")
+print("Total weight of cover:", cover_weight)
+print("Capacity:", capacity)
+
+if cover_weight > capacity:
+    print("This is a valid cover because its total weight exceeds the capacity.")
+
+print("\nCover inequality:")
+print("x1 + x2 + x3 <= 2")
+
+print("\nAt the LP relaxation solution:")
+print(f"x1 + x2 + x3 = {cover_lhs:.4f}")
+print(f"Right-hand side = {cover_rhs}")
+
+if cover_lhs > cover_rhs:
+    print("The current LP solution violates the cover inequality.")
+else:
+    print("The current LP solution does not violate the cover inequality.")
+
+# Step 3: Add the cover cut and resolve the LP
+x_cut, z_cut = solve_lp(add_cover_cut=True)
+
+print("\n" + "=" * 55)
+print("LP Relaxation After Adding the Cover Cut")
+print("=" * 55)
+
+for i, val in enumerate(x_cut, start=1):
+    print(f"x{i} = {val:.4f}")
+
+print(f"z = {z_cut:.4f}")
+
+# Step 4: Solve the original 0-1 problem for comparison
+model_ip = ConcreteModel()
+model_ip.I = RangeSet(1, n)
+
+model_ip.x = Var(model_ip.I, within=Binary)
+
+model_ip.obj = Objective(
+    expr=sum(profits[i-1] * model_ip.x[i] for i in model_ip.I),
+    sense=maximize
+)
+
+model_ip.capacity = Constraint(
+    expr=sum(weights[i-1] * model_ip.x[i] for i in model_ip.I) <= capacity
+)
+
+SolverFactory("cbc").solve(model_ip)
+
+ip_solution = [int(round(value(model_ip.x[i]))) for i in model_ip.I]
+ip_value = value(model_ip.obj)
+ip_weight = sum(weights[i] * ip_solution[i] for i in range(n))
+
+print("\n" + "=" * 55)
+print("Integer Programming Solution")
+print("=" * 55)
+
+for i, val in enumerate(ip_solution, start=1):
+    print(f"x{i} = {val}")
+
+print("Total weight:", ip_weight)
+print("Objective value:", int(round(ip_value)))
+------------------
+
+----- stderr -----
+'apt-get' is not recognized as an internal or external command,
+operable program or batch file.
+----- stdout -----
+WARNING: Could not locate the 'cbc' executable, which is required for solver
+cbc
+------------------
+
+[31m---------------------------------------------------------------------------[39m
+[31mApplicationError[39m                          Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[1][39m[32m, line 52[39m
+[32m     49[39m     [38;5;28;01mreturn[39;00m solution, objective
+[32m     51[39m [38;5;66;03m# Step 1: Solve the LP relaxation[39;00m
+[32m---> [39m[32m52[39m x_lp, z_lp = [43msolve_lp[49m[43m([49m[43madd_cover_cut[49m[43m=[49m[38;5;28;43;01mFalse[39;49;00m[43m)[49m
+[32m     54[39m [38;5;28mprint[39m([33m"[39m[33m=[39m[33m"[39m * [32m55[39m)
+[32m     55[39m [38;5;28mprint[39m([33m"[39m[33mOriginal LP Relaxation[39m[33m"[39m)
+
+[36mCell[39m[36m [39m[32mIn[1][39m[32m, line 44[39m, in [36msolve_lp[39m[34m(add_cover_cut)[39m
+[32m     39[39m [38;5;28;01mif[39;00m add_cover_cut:
+[32m     40[39m     model.cover_cut = Constraint(
+[32m     41[39m         expr=model.x[[32m1[39m] + model.x[[32m2[39m] + model.x[[32m3[39m] <= [32m2[39m
+[32m     42[39m     )
+[32m---> [39m[32m44[39m [43mSolverFactory[49m[43m([49m[33;43m"[39;49m[33;43mcbc[39;49m[33;43m"[39;49m[43m)[49m[43m.[49m[43msolve[49m[43m([49m[43mmodel[49m[43m)[49m
+[32m     46[39m solution = [value(model.x[i]) [38;5;28;01mfor[39;00m i [38;5;129;01min[39;00m model.I]
+[32m     47[39m objective = value(model.obj)
+
+[36mFile [39m[32m~\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\pyomo\opt\base\solvers.py:563[39m, in [36mOptSolver.solve[39m[34m(self, *args, **kwds)[39m
+[32m    560[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34msolve[39m([38;5;28mself[39m, *args, **kwds):
+[32m    561[39m [38;5;250m    [39m[33;03m"""Solve the problem"""[39;00m
+[32m--> [39m[32m563[39m     [38;5;28;43mself[39;49m[43m.[49m[43mavailable[49m[43m([49m[43mexception_flag[49m[43m=[49m[38;5;28;43;01mTrue[39;49;00m[43m)[49m
+[32m    564[39m     [38;5;66;03m#[39;00m
+[32m    565[39m     [38;5;66;03m# If the inputs are models, then validate that they have been[39;00m
+[32m    566[39m     [38;5;66;03m# constructed! Collect suffix names to try and import from solution.[39;00m
+[32m    567[39m     [38;5;66;03m#[39;00m
+[32m    568[39m     [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mpyomo[39;00m[34;01m.[39;00m[34;01mcore[39;00m[34;01m.[39;00m[34;01mbase[39;00m[34;01m.[39;00m[34;01mblock[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m BlockData
+
+[36mFile [39m[32m~\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\pyomo\opt\solver\shellcmd.py:138[39m, in [36mSystemCallSolver.available[39m[34m(self, exception_flag)[39m
+[32m    136[39m     [38;5;28;01mif[39;00m exception_flag:
+[32m    137[39m         msg = [33m"[39m[33mNo executable found for solver [39m[33m'[39m[38;5;132;01m%s[39;00m[33m'[39m[33m"[39m
+[32m--> [39m[32m138[39m         [38;5;28;01mraise[39;00m ApplicationError(msg % [38;5;28mself[39m.name)
+[32m    139[39m     [38;5;28;01mreturn[39;00m [38;5;28;01mFalse[39;00m
+[32m    140[39m [38;5;28;01mreturn[39;00m [38;5;28;01mTrue[39;00m
+
+[31mApplicationError[39m: No executable found for solver 'cbc'
+
