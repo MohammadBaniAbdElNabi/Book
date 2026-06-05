@@ -1,0 +1,125 @@
+Traceback (most recent call last):
+  File "C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\jupyter_cache\executors\utils.py", line 58, in single_nb_execution
+    executenb(
+  File "C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\nbclient\client.py", line 1323, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\jupyter_core\utils\__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\asyncio\base_events.py", line 691, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\nbclient\client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\nbclient\client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\nbclient\client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from pyomo.environ import *
+import numpy as np
+
+# Textbook data — Section 4.7.6
+cost = np.array([[475,  95, 665],
+                 [375, 150, 375],
+                 [360, 180, 180],
+                 [360, 180, 360]], dtype=float)
+demand   = np.array([19, 15, 12, 18])
+capacity = np.array([18, 27, 20])
+n_cust, n_wh = 4, 3
+
+# ── Direct 0-1 IP ────────────────────────────────────────────────────────
+model = ConcreteModel()
+model.I = RangeSet(1, n_cust)
+model.J = RangeSet(1, n_wh)
+model.x = Var(model.I, model.J, within=Binary)
+model.obj = Objective(
+    expr=sum(cost[i-1,j-1]*model.x[i,j] for i in model.I for j in model.J),
+    sense=minimize)
+def assign_rule(model, i):
+    return sum(model.x[i,j] for j in model.J) == 1
+model.assign = Constraint(model.I, rule=assign_rule)
+def cap_rule(model, j):
+    return sum(demand[i-1]*model.x[i,j] for i in model.I) <= capacity[j-1]
+model.cap = Constraint(model.J, rule=cap_rule)
+SolverFactory('cbc').solve(model)
+
+print('=== 4.7.6 Customer Allocation — Textbook Data ===')
+print(f'\nDirect 0-1 IP optimal cost: {int(round(model.obj()))}')
+print('Assignment:')
+for i in model.I:
+    for j in model.J:
+        if model.x[i,j].value > 0.5:
+            print(f'  Customer {i} → Warehouse {j}  (cost={cost[i-1,j-1]:.0f}, demand={demand[i-1]})')
+print('  Textbook answer: optimal cost = 1355')
+
+# ── Lagrangian iterations — textbook trace ───────────────────────────────
+def solve_warehouse_knapsack(j, lag_cost):
+    """Minimum-cost knapsack for warehouse j given modified costs."""
+    mk = ConcreteModel()
+    mk.I = RangeSet(1, n_cust)
+    mk.y = Var(mk.I, within=Binary)
+    mk.obj_k = Objective(expr=sum(lag_cost[i-1,j]*mk.y[i] for i in mk.I), sense=minimize)
+    mk.cap_k  = Constraint(expr=sum(demand[i-1]*mk.y[i] for i in mk.I) <= capacity[j])
+    SolverFactory('cbc').solve(mk)
+    assigned = [i for i in mk.I if mk.y[i].value > 0.5]
+    return assigned, mk.obj_k()
+
+# Three u vectors traced in the textbook
+u_vectors = [
+    np.array([-475., -375., -360., -360.]),   # Iteration 1 (textbook starting point)
+    np.array([-675., -375., -160., -560.]),   # Iteration 2 (u changed by 200)
+    np.array([-485., -375., -350., -370.]),   # Iteration 3 (u changed by 10)
+]
+
+print('\nLagrangian iterations (textbook trace):')
+for k, u in enumerate(u_vectors):
+    lag_cost = cost + u[:, np.newaxis]   # cij + ui
+    print(f'\n  Iteration {k+1}:  u = {u.tolist()}')
+    print('  Modified cost matrix:')
+    for i in range(n_cust):
+        print(f'    Customer {i+1}: {lag_cost[i].tolist()}')
+    total = 0
+    for j in range(n_wh):
+        assigned, obj_k = solve_warehouse_knapsack(j, lag_cost)
+        print(f'    Warehouse {j+1}: assigns customers {assigned}, knapsack cost={obj_k:.0f}')
+        total += obj_k
+    lag_val = total - sum(u)
+    print(f'  Lagrangian value = {total:.0f} - ({sum(u):.0f}) = {lag_val:.0f}')
+------------------
+
+----- stdout -----
+WARNING: Could not locate the 'cbc' executable, which is required for solver
+cbc
+------------------
+
+[31m---------------------------------------------------------------------------[39m
+[31mApplicationError[39m                          Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[3][39m[32m, line 27[39m
+[32m     25[39m     [38;5;28;01mreturn[39;00m [38;5;28msum[39m(demand[i-[32m1[39m]*model.x[i,j] [38;5;28;01mfor[39;00m i [38;5;129;01min[39;00m model.I) <= capacity[j-[32m1[39m]
+[32m     26[39m model.cap = Constraint(model.J, rule=cap_rule)
+[32m---> [39m[32m27[39m [43mSolverFactory[49m[43m([49m[33;43m'[39;49m[33;43mcbc[39;49m[33;43m'[39;49m[43m)[49m[43m.[49m[43msolve[49m[43m([49m[43mmodel[49m[43m)[49m
+[32m     29[39m [38;5;28mprint[39m([33m'[39m[33m=== 4.7.6 Customer Allocation — Textbook Data ===[39m[33m'[39m)
+[32m     30[39m [38;5;28mprint[39m([33mf[39m[33m'[39m[38;5;130;01m\n[39;00m[33mDirect 0-1 IP optimal cost: [39m[38;5;132;01m{[39;00m[38;5;28mint[39m([38;5;28mround[39m(model.obj()))[38;5;132;01m}[39;00m[33m'[39m)
+
+[36mFile [39m[32m~\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\pyomo\opt\base\solvers.py:563[39m, in [36mOptSolver.solve[39m[34m(self, *args, **kwds)[39m
+[32m    560[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34msolve[39m([38;5;28mself[39m, *args, **kwds):
+[32m    561[39m [38;5;250m    [39m[33;03m"""Solve the problem"""[39;00m
+[32m--> [39m[32m563[39m     [38;5;28;43mself[39;49m[43m.[49m[43mavailable[49m[43m([49m[43mexception_flag[49m[43m=[49m[38;5;28;43;01mTrue[39;49;00m[43m)[49m
+[32m    564[39m     [38;5;66;03m#[39;00m
+[32m    565[39m     [38;5;66;03m# If the inputs are models, then validate that they have been[39;00m
+[32m    566[39m     [38;5;66;03m# constructed! Collect suffix names to try and import from solution.[39;00m
+[32m    567[39m     [38;5;66;03m#[39;00m
+[32m    568[39m     [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mpyomo[39;00m[34;01m.[39;00m[34;01mcore[39;00m[34;01m.[39;00m[34;01mbase[39;00m[34;01m.[39;00m[34;01mblock[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m BlockData
+
+[36mFile [39m[32m~\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\pyomo\opt\solver\shellcmd.py:138[39m, in [36mSystemCallSolver.available[39m[34m(self, exception_flag)[39m
+[32m    136[39m     [38;5;28;01mif[39;00m exception_flag:
+[32m    137[39m         msg = [33m"[39m[33mNo executable found for solver [39m[33m'[39m[38;5;132;01m%s[39;00m[33m'[39m[33m"[39m
+[32m--> [39m[32m138[39m         [38;5;28;01mraise[39;00m ApplicationError(msg % [38;5;28mself[39m.name)
+[32m    139[39m     [38;5;28;01mreturn[39;00m [38;5;28;01mFalse[39;00m
+[32m    140[39m [38;5;28;01mreturn[39;00m [38;5;28;01mTrue[39;00m
+
+[31mApplicationError[39m: No executable found for solver 'cbc'
+
