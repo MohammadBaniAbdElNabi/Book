@@ -1,4 +1,4 @@
-# **Key Terms**
+# Key Terms
 
 BFGS updates<br>
 concave function<br>
