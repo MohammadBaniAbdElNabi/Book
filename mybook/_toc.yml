@@ -98,7 +98,6 @@ parts:
   - file: content/Ch_4/4_3/4_3_3
   - file: content/Ch_4/4_3/4_3_4
   - file: content/Ch_4/4_3/4_3_5
-  - file: content/Ch_4/4_4/4_4
   - file: content/Ch_4/4_4/4_4_1.ipynb
   - file: content/Ch_4/4_4/4_4_2
   - file: content/Ch_4/4_4/4_4_3.ipynb

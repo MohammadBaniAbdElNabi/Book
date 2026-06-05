@@ -1,4 +1,4 @@
-# **References and Suggested Readings**
+# References and Suggested Readings
 
 Avriel, M. 1976. Nonlinear Programming: Analysis and Methods. Englewood Cliffs, NJ: Prentice-Hall.<br>
 
