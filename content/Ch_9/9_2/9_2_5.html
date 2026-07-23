@@ -266,7 +266,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_3/4_3_3.html">4.3.3 Bin Packing Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_3/4_3_4.html">4.3.4 Set Partitioning/Covering/Packing Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_3/4_3_5.html">4.3.5 Generalized Assignment Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_4/4_4_1.html">4.4 BRANCH-AND-BOUND</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_4/4_4_1.html">4.4.1 A Simple Example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_4/4_4_2.html">4.4.2 A Basic Branch-and-Bound Algorithm</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_4/4_4_3.html">4.4.3 Knapsack Example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_4/4_4_4.html">4.4.4 From Basic Method to Commercial Code</a></li>
@@ -275,15 +275,15 @@
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_4/4_4_4_3.html">4.4.4.3 Separation Rules</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_4/4_4_4_4.html">4.4.4.4 The Impact of Model Formulation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_4/4_4_4_5.html">4.4.4.5 Representation of Real Numbers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_5/4_5.html">4.5 Cutting Planes and Facets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_6/4_6.html">4.6 Cover Inequalities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_5/4_5.html">4.5 CUTTING PLANES AND FACETS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_6/4_6.html">4.6 COVER INEQUALITIES</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_7/4_7_1.html">4.7 LAGRANGIAN RELAXATION</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_7/4_7_2.html">4.7.2 A Simple Example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_7/4_7_3.html">4.7.3 The Integrality Gap</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_7/4_7_4.html">4.7.4 The Generalized Assignment Problem</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_7/4_7_5.html">4.7.5 A Basic Lagrangian Relaxation Algorithm</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_7/4_7_6.html">4.7.6 A Customer Allocation Problem</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_8/4_8.html">4.8 Column Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_8/4_8.html">4.8 COLUMN GENERATION</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_9/4_9.html">4.9 SOFTWARE FOR INTEGER PROGRAMMING</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_10/4_10_1.html">4.10 ILLUSTRATIVE APPLICATIONS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_10/4_10_2.html">4.10.2 Timber Harvest Planning (Epstein et al. 1999)</a></li>
@@ -357,7 +357,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_8/8_2/8_2.html">8.2 DISCRETE SIMULATION MODELS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_8/8_2/8_2_1.html">8.2.1 Event-Driven Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_8/8_2/8_2_2.html">8.2.2 Generating Random Events</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Ch_8/8_3/8_3.html">8.3 OBSERVATIONS OF SIMULATIONS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_8/8_3/8_3_1_1.html">8.3.1 Gathering Statistics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_8/8_3/8_3_1_2.html">8.3.1.2 Average Waiting Time</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_8/8_3/8_3_1_3.html">8.3.1.3 Average Number in Queue</a></li>
@@ -480,6 +479,55 @@
 
 
 
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/MohammadBaniAbdElNabi/Book/main?urlpath=tree/content/Ch_9/9_2/9_2_5.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="../../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-download-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
     <i class="fas fa-download"></i>
@@ -488,7 +536,7 @@
       
       
       
-      <li><a href="../../../_sources/content/Ch_9/9_2/9_2_5.md" target="_blank"
+      <li><a href="../../../_sources/content/Ch_9/9_2/9_2_5.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -498,7 +546,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -578,6 +626,7 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="savage-minimax-regret">
 <h1>9.2.5 Savage Minimax Regret<a class="headerlink" href="#savage-minimax-regret" title="Link to this heading">#</a></h1>
+<p><a class="reference external" href="https://colab.research.google.com/drive/1cQEd475UbbsMLKiYmysXn6zLA08oafNM?usp=sharing"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
 <p>Define the regret matrix by <span class="math notranslate nohighlight">\(\mathrm{r}_{\mathrm{ij}}=\mathrm{p}_{\mathrm{i}}{ }^{*}-\mathrm{p}_{\mathrm{ij}}\)</span> where <span class="math notranslate nohighlight">\(\mathrm{p}_{\mathrm{i}}{ }^{*}\)</span> denotes the best outcome which could occur under state <span class="math notranslate nohighlight">\(\Theta_{\mathrm{i}}\)</span>. For each alternative, find the maximum regret. Select the alternative that minimizes this maximum regret.</p>
 <p>This strategy is associated with insecure decision-makers. Such people are not primarily interested in making the highest profit; they are more concerned with how disappointed they are going to feel after the fact. To illustrate this, suppose that alternative <span class="math notranslate nohighlight">\(\mathrm{a}_{3}\)</span> is selected, and then state <span class="math notranslate nohighlight">\(\Theta_{1}\)</span> occurs. In hindsight, the decision-maker will wish he had chosen alternative <span class="math notranslate nohighlight">\(\mathrm{a}_{1}\)</span> for a payoff of 5 instead of the actual profit of 0 . He will regret making the wrong choice, and the amount of this regret can measured by the difference between what he actually received and what he could have earned if he had known that state <span class="math notranslate nohighlight">\(\Theta_{1}\)</span> would result. He will experience a regret of <span class="math notranslate nohighlight">\(5-0=5\)</span>. The complete regret matrix for the example is:</p>
 <div class="pst-scrollable-table-container"><table class="table">
@@ -767,6 +816,172 @@ Laplace: All states have equal probability.
 Hurwicz: The best outcome has probability <span class="math notranslate nohighlight">\(\alpha\)</span> and the worst outcome has probability <span class="math notranslate nohighlight">\((1-\alpha)\)</span>.
 Savage: The highest regret outcome for each alternative has probability 1 .
 In every case, by claiming complete ignorance and then selecting a particular strategy, the decision-maker has implicitly assigned probabilities to the outcomes. Realizing this, the decision-maker would likely prefer to trust his or her own judgment about probabilities.</p>
+<p><strong>Code Implementation</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>pgmpy<span class="w"> </span>numpy<span class="w"> </span>pandas<span class="w"> </span>matplotlib<span class="w"> </span>networkx<span class="w"> </span>--quiet
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  WARNING: The scripts hf.exe, huggingface-cli.exe and tiny-agents.exe are installed in &#39;C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\Scripts&#39; which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+ERROR: pip&#39;s dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+typer 0.15.4 requires click&lt;8.2,&gt;=8.0.0, but you have click 8.4.2 which is incompatible.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.patches</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">mpatches</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">networkx</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nx</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">pgmpy.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">DiscreteBayesianNetwork</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pgmpy.factors.discrete</span><span class="w"> </span><span class="kn">import</span> <span class="n">TabularCPD</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pgmpy.inference</span><span class="w"> </span><span class="kn">import</span> <span class="n">VariableElimination</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;All packages loaded successfully.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>All packages loaded successfully.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="c1"># Textbook payoff matrix (p.345)</span>
+<span class="c1"># Rows = states (θ1..θ4), Columns = alternatives (a1..a6)</span>
+<span class="n">payoff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>   <span class="c1"># θ1</span>
+    <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>   <span class="c1"># θ2</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>   <span class="c1"># θ3</span>
+    <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>   <span class="c1"># θ4</span>
+<span class="p">])</span>
+<span class="n">alternatives</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a1&#39;</span><span class="p">,</span><span class="s1">&#39;a2&#39;</span><span class="p">,</span><span class="s1">&#39;a3&#39;</span><span class="p">,</span><span class="s1">&#39;a4&#39;</span><span class="p">,</span><span class="s1">&#39;a5&#39;</span><span class="p">,</span><span class="s1">&#39;a6&#39;</span><span class="p">]</span>
+<span class="n">states</span>       <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;θ1&#39;</span><span class="p">,</span><span class="s1">&#39;θ2&#39;</span><span class="p">,</span><span class="s1">&#39;θ3&#39;</span><span class="p">,</span><span class="s1">&#39;θ4&#39;</span><span class="p">]</span>
+<span class="n">alpha</span>        <span class="o">=</span> <span class="mf">0.6</span>   <span class="c1"># Hurwicz optimism coefficient</span>
+
+<span class="c1"># Display payoff matrix</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;=== Payoff Matrix (p.345) ===&#39;</span><span class="p">)</span>
+<span class="n">df_payoff</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">payoff</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">states</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">alternatives</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_payoff</span><span class="o">.</span><span class="n">to_string</span><span class="p">())</span>
+
+<span class="c1"># ── 1. Maximin ────────────────────────────────────────────────────────────</span>
+<span class="c1"># For each alternative (column), find minimum across states (rows)</span>
+<span class="n">col_min</span>  <span class="o">=</span> <span class="n">payoff</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">maximin</span>  <span class="o">=</span> <span class="n">alternatives</span><span class="p">[</span><span class="n">col_min</span><span class="o">.</span><span class="n">argmax</span><span class="p">()]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">1. Maximin (pessimistic):&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;   Column minima: </span><span class="si">{</span><span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">alternatives</span><span class="p">,</span><span class="w"> </span><span class="n">col_min</span><span class="p">))</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;   Best: </span><span class="si">{</span><span class="n">maximin</span><span class="si">}</span><span class="s1"> (min=</span><span class="si">{</span><span class="n">col_min</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+
+<span class="c1"># ── 2. Maximax ────────────────────────────────────────────────────────────</span>
+<span class="n">col_max</span>  <span class="o">=</span> <span class="n">payoff</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">maximax</span>  <span class="o">=</span> <span class="n">alternatives</span><span class="p">[</span><span class="n">col_max</span><span class="o">.</span><span class="n">argmax</span><span class="p">()]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">2. Maximax (optimistic):&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;   Column maxima: </span><span class="si">{</span><span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">alternatives</span><span class="p">,</span><span class="w"> </span><span class="n">col_max</span><span class="p">))</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;   Best: </span><span class="si">{</span><span class="n">maximax</span><span class="si">}</span><span class="s1"> (max=</span><span class="si">{</span><span class="n">col_max</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+
+<span class="c1"># ── 3. Laplace ────────────────────────────────────────────────────────────</span>
+<span class="n">col_avg</span>  <span class="o">=</span> <span class="n">payoff</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">laplace</span>  <span class="o">=</span> <span class="n">alternatives</span><span class="p">[</span><span class="n">col_avg</span><span class="o">.</span><span class="n">argmax</span><span class="p">()]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">3. Laplace (equal probability):&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;   Column averages: </span><span class="si">{</span><span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">alternatives</span><span class="p">,</span><span class="w"> </span><span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">col_avg</span><span class="p">,</span><span class="mi">3</span><span class="p">)))</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;   Best: </span><span class="si">{</span><span class="n">laplace</span><span class="si">}</span><span class="s1"> (avg=</span><span class="si">{</span><span class="n">col_avg</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+
+<span class="c1"># ── 4. Hurwicz ────────────────────────────────────────────────────────────</span>
+<span class="n">h_vals</span>   <span class="o">=</span> <span class="n">alpha</span><span class="o">*</span><span class="n">col_max</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">alpha</span><span class="p">)</span><span class="o">*</span><span class="n">col_min</span>
+<span class="n">hurwicz</span>  <span class="o">=</span> <span class="n">alternatives</span><span class="p">[</span><span class="n">h_vals</span><span class="o">.</span><span class="n">argmax</span><span class="p">()]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">4. Hurwicz (α=</span><span class="si">{</span><span class="n">alpha</span><span class="si">}</span><span class="s1">):&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">a</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">alternatives</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;   </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">alpha</span><span class="si">}</span><span class="s1">×</span><span class="si">{</span><span class="n">col_max</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s1"> + </span><span class="si">{</span><span class="mi">1</span><span class="o">-</span><span class="n">alpha</span><span class="si">}</span><span class="s1">×</span><span class="si">{</span><span class="n">col_min</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s1"> = </span><span class="si">{</span><span class="n">h_vals</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;   Best: </span><span class="si">{</span><span class="n">hurwicz</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># ── 5. Savage Minimax Regret ──────────────────────────────────────────────</span>
+<span class="c1"># Best in each row (state) = max across alternatives</span>
+<span class="n">best_per_state</span> <span class="o">=</span> <span class="n">payoff</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">regret</span>         <span class="o">=</span> <span class="n">best_per_state</span><span class="p">[:,</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">-</span> <span class="n">payoff</span>   <span class="c1"># broadcast</span>
+<span class="n">max_regret</span>     <span class="o">=</span> <span class="n">regret</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">savage</span>         <span class="o">=</span> <span class="n">alternatives</span><span class="p">[</span><span class="n">max_regret</span><span class="o">.</span><span class="n">argmin</span><span class="p">()]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">5. Savage Minimax Regret:&#39;</span><span class="p">)</span>
+<span class="n">df_regret</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">regret</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">states</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">alternatives</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;   Regret matrix:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_regret</span><span class="o">.</span><span class="n">to_string</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;   Max regret per alternative: </span><span class="si">{</span><span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">alternatives</span><span class="p">,</span><span class="w"> </span><span class="n">max_regret</span><span class="p">))</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;   Best: </span><span class="si">{</span><span class="n">savage</span><span class="si">}</span><span class="s1"> (max regret=</span><span class="si">{</span><span class="n">max_regret</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+
+<span class="c1"># ── Summary ───────────────────────────────────────────────────────────────</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">=== Summary ===&#39;</span><span class="p">)</span>
+<span class="n">summary</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;Strategy&#39;</span><span class="p">:</span>  <span class="p">[</span><span class="s1">&#39;Maximin&#39;</span><span class="p">,</span><span class="s1">&#39;Maximax&#39;</span><span class="p">,</span><span class="s1">&#39;Laplace&#39;</span><span class="p">,</span><span class="sa">f</span><span class="s1">&#39;Hurwicz(α=</span><span class="si">{</span><span class="n">alpha</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">,</span><span class="s1">&#39;Savage&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;Best Alt&#39;</span><span class="p">:</span>  <span class="p">[</span><span class="n">maximin</span><span class="p">,</span> <span class="n">maximax</span><span class="p">,</span> <span class="n">laplace</span><span class="p">,</span> <span class="n">hurwicz</span><span class="p">,</span> <span class="n">savage</span><span class="p">],</span>
+<span class="p">})</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">summary</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== Payoff Matrix (p.345) ===
+    a1  a2  a3  a4  a5  a6
+θ1   5   3   0   3   2   3
+θ2   5   3   8   6   7   3
+θ3   0   3   0   1   2   2
+θ4   4   3   0   2   2   1
+
+1. Maximin (pessimistic):
+   Column minima: {&#39;a1&#39;: np.int64(0), &#39;a2&#39;: np.int64(3), &#39;a3&#39;: np.int64(0), &#39;a4&#39;: np.int64(1), &#39;a5&#39;: np.int64(2), &#39;a6&#39;: np.int64(1)}
+   Best: a2 (min=3)
+
+2. Maximax (optimistic):
+   Column maxima: {&#39;a1&#39;: np.int64(5), &#39;a2&#39;: np.int64(3), &#39;a3&#39;: np.int64(8), &#39;a4&#39;: np.int64(6), &#39;a5&#39;: np.int64(7), &#39;a6&#39;: np.int64(3)}
+   Best: a3 (max=8)
+
+3. Laplace (equal probability):
+   Column averages: {&#39;a1&#39;: np.float64(3.5), &#39;a2&#39;: np.float64(3.0), &#39;a3&#39;: np.float64(2.0), &#39;a4&#39;: np.float64(3.0), &#39;a5&#39;: np.float64(3.25), &#39;a6&#39;: np.float64(2.25)}
+   Best: a1 (avg=3.500)
+
+4. Hurwicz (α=0.6):
+   a1: 0.6×5 + 0.4×0 = 3.0
+   a2: 0.6×3 + 0.4×3 = 3.0
+   a3: 0.6×8 + 0.4×0 = 4.8
+   a4: 0.6×6 + 0.4×1 = 4.0
+   a5: 0.6×7 + 0.4×2 = 5.0
+   a6: 0.6×3 + 0.4×1 = 2.2
+   Best: a5
+
+5. Savage Minimax Regret:
+   Regret matrix:
+    a1  a2  a3  a4  a5  a6
+θ1   0   2   5   2   3   2
+θ2   3   5   0   2   1   5
+θ3   3   0   3   2   1   1
+θ4   0   1   4   2   2   3
+   Max regret per alternative: {&#39;a1&#39;: np.int64(3), &#39;a2&#39;: np.int64(5), &#39;a3&#39;: np.int64(5), &#39;a4&#39;: np.int64(2), &#39;a5&#39;: np.int64(3), &#39;a6&#39;: np.int64(5)}
+   Best: a4 (max regret=2)
+
+=== Summary ===
+      Strategy Best Alt
+       Maximin       a2
+       Maximax       a3
+       Laplace       a1
+Hurwicz(α=0.6)       a5
+        Savage       a4
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 
     <script type="text/x-thebe-config">
