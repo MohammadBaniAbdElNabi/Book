@@ -266,7 +266,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_3/4_3_3.html">4.3.3 Bin Packing Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_3/4_3_4.html">4.3.4 Set Partitioning/Covering/Packing Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_3/4_3_5.html">4.3.5 Generalized Assignment Model</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_4/4_4_1.html">4.4 BRANCH-AND-BOUND</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_4/4_4_1.html">4.4.1 A Simple Example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_4/4_4_2.html">4.4.2 A Basic Branch-and-Bound Algorithm</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_4/4_4_3.html">4.4.3 Knapsack Example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_4/4_4_4.html">4.4.4 From Basic Method to Commercial Code</a></li>
@@ -275,15 +275,15 @@
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_4/4_4_4_3.html">4.4.4.3 Separation Rules</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_4/4_4_4_4.html">4.4.4.4 The Impact of Model Formulation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_4/4_4_4_5.html">4.4.4.5 Representation of Real Numbers</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_5/4_5.html">4.5 Cutting Planes and Facets</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_6/4_6.html">4.6 Cover Inequalities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_5/4_5.html">4.5 CUTTING PLANES AND FACETS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_6/4_6.html">4.6 COVER INEQUALITIES</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_7/4_7_1.html">4.7 LAGRANGIAN RELAXATION</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_7/4_7_2.html">4.7.2 A Simple Example</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_7/4_7_3.html">4.7.3 The Integrality Gap</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_7/4_7_4.html">4.7.4 The Generalized Assignment Problem</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_7/4_7_5.html">4.7.5 A Basic Lagrangian Relaxation Algorithm</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_7/4_7_6.html">4.7.6 A Customer Allocation Problem</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_8/4_8.html">4.8 Column Generation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_8/4_8.html">4.8 COLUMN GENERATION</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_9/4_9.html">4.9 SOFTWARE FOR INTEGER PROGRAMMING</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_10/4_10_1.html">4.10 ILLUSTRATIVE APPLICATIONS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_4/4_10/4_10_2.html">4.10.2 Timber Harvest Planning (Epstein et al. 1999)</a></li>
@@ -357,7 +357,6 @@
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_8/8_2/8_2.html">8.2 DISCRETE SIMULATION MODELS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_8/8_2/8_2_1.html">8.2.1 Event-Driven Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_8/8_2/8_2_2.html">8.2.2 Generating Random Events</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../Ch_8/8_3/8_3.html">8.3 OBSERVATIONS OF SIMULATIONS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_8/8_3/8_3_1_1.html">8.3.1 Gathering Statistics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_8/8_3/8_3_1_2.html">8.3.1.2 Average Waiting Time</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Ch_8/8_3/8_3_1_3.html">8.3.1.3 Average Number in Queue</a></li>
@@ -480,6 +479,55 @@
 
 
 
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/MohammadBaniAbdElNabi/Book/main?urlpath=tree/content/Ch_9/9_4/9_4_3.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="../../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-download-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
     <i class="fas fa-download"></i>
@@ -488,7 +536,7 @@
       
       
       
-      <li><a href="../../../_sources/content/Ch_9/9_4/9_4_3.md" target="_blank"
+      <li><a href="../../../_sources/content/Ch_9/9_4/9_4_3.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -498,7 +546,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -578,6 +626,7 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="the-shape-of-the-utility-curve">
 <h1>9.4.3 The Shape of the Utility Curve<a class="headerlink" href="#the-shape-of-the-utility-curve" title="Link to this heading">#</a></h1>
+<p><a class="reference external" href="https://colab.research.google.com/drive/1CWuxOfe0vfNNpp8QwaAwQeZgfSDPmT_J?usp=sharing"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
 <p>The primary types of utility curves are illustrated in Figure 9.13. For the EMVer, each additional dollar has the same utility value. The utility curve is a straight line indicating that the marginal value of each dollar is constant. The risk averse (RA) decision-maker has a curve with a decreasing slope, indicating a decreasing value of each additional dollar. Observe that this person derives <span class="math notranslate nohighlight">\(60 \%\)</span> of the total utility from simply breaking even. Conversely, the risk seeking (RS) gambler has a curve with an increasing rate of change. The marginal value of each additional dollar is increasing. This individual is happy only when he is very close to the top of the scale. Breaking even has a very low utility. It is important to recognize that a person’s attitude toward risk is reflected by the rate of change of the slope of the curve-not by the absolute value of the slope.
 The gambler in a business environment is not the same personality that one would expect to find gambling in a casino. Such people are typically found at the head of a new venture. There is considerable risk associated with starting a new company, but these people have</p>
 <p><img alt="" src="https://cdn.mathpix.com/cropped/2006c750-dc2a-4c1f-9672-416eca5f2ff4-388.jpg?height=739&amp;width=708&amp;top_left_y=1488&amp;top_left_x=521" /></p>
@@ -628,6 +677,321 @@ p&gt;0.89 \times p+0.10
 <p>In other words, no matter how the utility function is defined, the decision-maker must either select the first branch in both problems, or the second branch in both problems.
 There is no rational way to explain this dilemma. In the first problem, the decision-maker is frightened away from the lottery because there is a 0.01 chance of obtaining a zero. However, in the second problem, there is an extra 0.01 chance of getting zero in the second lottery. This additional risk apparently is not recognized. The decision-maker is effectively saying that a probability of 0.01 is significant enough to avoid the risk, but, at the same time, probabilities of 0.89 or 0.90 are essentially equivalent. A difference in probability of 0.01 should either deter a person in both cases or not at all. Even when we point this out, many people will stick with their original, irrational selections. We will discuss this and other aspects of irrational behavior in the following section.</p>
 <p>Many practitioners believe that utility theory is the only solution to decision-making problems. Others argue that, although it is reasonable to assume that people have an implicit personal utility function, it is not a practical tool for decision analysis. The main objection, in addition to the problems already mentioned, is that the assessment procedures for determining a person’s utility function are basically artificial. When people are asked to play lottery games, the prizes are not representative of real decision problems. Therefore, it is difficult for people to treat the answers seriously, especially as the number of questions increases. Despite these criticisms, utility theory has been used in a wide variety of practical decision situations, some of which are described and discussed in Raiffa (1968) and Keeney and Raiffa (1976).</p>
+<p><strong>Code Implementation</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">ipywidgets</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">widgets</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Markdown</span>
+
+<span class="n">style</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;description_width&#39;</span><span class="p">:</span> <span class="s1">&#39;180px&#39;</span><span class="p">}</span>
+<span class="n">layout</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Layout</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="s1">&#39;500px&#39;</span><span class="p">)</span>
+
+<span class="c1"># ─────────────────────────────────────────────────────────────</span>
+<span class="c1"># Helper formatting</span>
+<span class="c1"># ─────────────────────────────────────────────────────────────</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">money_k</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">sign</span> <span class="o">=</span> <span class="s2">&quot;-&quot;</span> <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">sign</span><span class="si">}</span><span class="s2">$</span><span class="si">{</span><span class="nb">abs</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="si">:</span><span class="s2">,.0f</span><span class="si">}</span><span class="s2">K&quot;</span>
+
+
+<span class="c1"># ─────────────────────────────────────────────────────────────</span>
+<span class="c1"># PART 1 — Basic Utility Curves</span>
+<span class="c1"># ─────────────────────────────────────────────────────────────</span>
+
+<span class="n">risk_type</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span>
+    <span class="n">options</span><span class="o">=</span><span class="p">[</span>
+        <span class="p">(</span><span class="s1">&#39;Risk Averse&#39;</span><span class="p">,</span> <span class="s1">&#39;averse&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;EMVer / Risk Neutral&#39;</span><span class="p">,</span> <span class="s1">&#39;neutral&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;Risk Seeking&#39;</span><span class="p">,</span> <span class="s1">&#39;seeking&#39;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;Show All&#39;</span><span class="p">,</span> <span class="s1">&#39;all&#39;</span><span class="p">)</span>
+    <span class="p">],</span>
+    <span class="n">value</span><span class="o">=</span><span class="s1">&#39;all&#39;</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Curve Type:&#39;</span><span class="p">,</span>
+    <span class="n">style</span><span class="o">=</span><span class="n">style</span><span class="p">,</span>
+    <span class="n">layout</span><span class="o">=</span><span class="n">layout</span>
+<span class="p">)</span>
+
+<span class="n">curvature</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">FloatSlider</span><span class="p">(</span>
+    <span class="n">value</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span>
+    <span class="nb">min</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+    <span class="nb">max</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span>
+    <span class="n">step</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Curvature:&#39;</span><span class="p">,</span>
+    <span class="n">style</span><span class="o">=</span><span class="n">style</span><span class="p">,</span>
+    <span class="n">layout</span><span class="o">=</span><span class="n">layout</span>
+<span class="p">)</span>
+
+<span class="n">out_basic</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Output</span><span class="p">()</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">draw_basic_curves</span><span class="p">(</span><span class="n">curve_type</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">out_basic</span><span class="p">:</span>
+        <span class="n">out_basic</span><span class="o">.</span><span class="n">clear_output</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>
+        <span class="n">x_norm</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">x</span><span class="o">.</span><span class="n">min</span><span class="p">())</span> <span class="o">/</span> <span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">x</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
+
+        <span class="c1"># Risk averse: increasing but decreasing slope</span>
+        <span class="n">y_averse</span> <span class="o">=</span> <span class="n">x_norm</span> <span class="o">**</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">c</span><span class="p">)</span>
+
+        <span class="c1"># Risk neutral / EMVer: straight line</span>
+        <span class="n">y_neutral</span> <span class="o">=</span> <span class="n">x_norm</span>
+
+        <span class="c1"># Risk seeking: increasing slope</span>
+        <span class="n">y_seeking</span> <span class="o">=</span> <span class="n">x_norm</span> <span class="o">**</span> <span class="n">c</span>
+
+        <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="n">curve_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;averse&#39;</span><span class="p">,</span> <span class="s1">&#39;all&#39;</span><span class="p">]:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_averse</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Risk Averse&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">curve_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;neutral&#39;</span><span class="p">,</span> <span class="s1">&#39;all&#39;</span><span class="p">]:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_neutral</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;EMVer / Risk Neutral&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">curve_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;seeking&#39;</span><span class="p">,</span> <span class="s1">&#39;all&#39;</span><span class="p">]:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y_seeking</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Risk Seeking&#39;</span><span class="p">)</span>
+
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Basic Utility Curves&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Profit in thousand dollars&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Utility&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.05</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">curve_type</span> <span class="o">==</span> <span class="s1">&#39;averse&#39;</span><span class="p">:</span>
+            <span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">**Risk averse:** The curve rises quickly at first, then flattens.</span>
+<span class="s2">This means the person values safety and dislikes large risk.</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="n">curve_type</span> <span class="o">==</span> <span class="s1">&#39;neutral&#39;</span><span class="p">:</span>
+            <span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">**EMVer / risk neutral:** The curve is straight.</span>
+<span class="s2">Each additional dollar has the same value.</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="p">))</span>
+        <span class="k">elif</span> <span class="n">curve_type</span> <span class="o">==</span> <span class="s1">&#39;seeking&#39;</span><span class="p">:</span>
+            <span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">**Risk seeking:** The curve rises slowly at first, then faster.</span>
+<span class="s2">This person is willing to take risk for a large possible gain.</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">This compares the three common utility curve shapes:</span>
+
+<span class="s2">- **Risk averse:** decreasing slope</span>
+<span class="s2">- **EMVer / risk neutral:** constant slope</span>
+<span class="s2">- **Risk seeking:** increasing slope</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="p">))</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">update_basic</span><span class="p">(</span><span class="n">change</span><span class="p">):</span>
+    <span class="n">draw_basic_curves</span><span class="p">(</span><span class="n">risk_type</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">curvature</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+
+
+<span class="n">risk_type</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="n">update_basic</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
+<span class="n">curvature</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="n">update_basic</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="s2">&quot;## Part 1 — Basic Utility Curves&quot;</span><span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">widgets</span><span class="o">.</span><span class="n">VBox</span><span class="p">([</span><span class="n">risk_type</span><span class="p">,</span> <span class="n">curvature</span><span class="p">]),</span> <span class="n">out_basic</span><span class="p">)</span>
+<span class="n">draw_basic_curves</span><span class="p">(</span><span class="n">risk_type</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">curvature</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<h2 class="rubric" id="part-1-basic-utility-curves">Part 1 — Basic Utility Curves</h2>
+<script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "c608e9a95eac4bc19849967b95eef4d2"}</script><script type="application/vnd.jupyter.widget-view+json">{"version_major": 2, "version_minor": 0, "model_id": "7541aecc89fe43d3918a8f3b4905541d"}</script></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ─────────────────────────────────────────────────────────────</span>
+<span class="c1"># PART 2 — Target-Level Utility Curve</span>
+<span class="c1"># ─────────────────────────────────────────────────────────────</span>
+
+<span class="n">target</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">FloatSlider</span><span class="p">(</span>
+    <span class="n">value</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span>
+    <span class="nb">min</span><span class="o">=-</span><span class="mi">10</span><span class="p">,</span>
+    <span class="nb">max</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span>
+    <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Target Level ($K):&#39;</span><span class="p">,</span>
+    <span class="n">style</span><span class="o">=</span><span class="n">style</span><span class="p">,</span>
+    <span class="n">layout</span><span class="o">=</span><span class="n">layout</span>
+<span class="p">)</span>
+
+<span class="n">steepness</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">FloatSlider</span><span class="p">(</span>
+    <span class="n">value</span><span class="o">=</span><span class="mf">0.13</span><span class="p">,</span>
+    <span class="nb">min</span><span class="o">=</span><span class="mf">0.03</span><span class="p">,</span>
+    <span class="nb">max</span><span class="o">=</span><span class="mf">0.40</span><span class="p">,</span>
+    <span class="n">step</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Goal Sensitivity:&#39;</span><span class="p">,</span>
+    <span class="n">style</span><span class="o">=</span><span class="n">style</span><span class="p">,</span>
+    <span class="n">layout</span><span class="o">=</span><span class="n">layout</span>
+<span class="p">)</span>
+
+<span class="n">out_target</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Output</span><span class="p">()</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">draw_target_curve</span><span class="p">(</span><span class="n">target_value</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">out_target</span><span class="p">:</span>
+        <span class="n">out_target</span><span class="o">.</span><span class="n">clear_output</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+
+        <span class="c1"># S-shaped logistic curve centered around target</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">k</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">target_value</span><span class="p">)))</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">y</span><span class="o">.</span><span class="n">min</span><span class="p">())</span> <span class="o">/</span> <span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">y</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
+
+        <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+        <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">target_value</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">([</span><span class="n">target_value</span><span class="p">],</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">target_value</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)],</span> <span class="n">s</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span>
+
+        <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span>
+            <span class="n">target_value</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">target_value</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span>
+            <span class="sa">f</span><span class="s2">&quot;Target = </span><span class="si">{</span><span class="n">money_k</span><span class="p">(</span><span class="n">target_value</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span>
+        <span class="p">)</span>
+
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Utility Curve with a Target Level&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Profit in thousand dollars&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Utility&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.05</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+        <span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">This curve shows a person who has a **target level** of **</span><span class="si">{</span><span class="n">money_k</span><span class="p">(</span><span class="n">target_value</span><span class="p">)</span><span class="si">}</span><span class="s2">**.</span>
+
+<span class="s2">Below the target, the person may become more willing to take risk to reach the goal.</span>
+<span class="s2">Once the target is reached, the person becomes more conservative again.</span>
+
+<span class="s2">This explains why someone can be:</span>
+
+<span class="s2">- **Risk averse** far below the target</span>
+<span class="s2">- **Risk seeking** near the target</span>
+<span class="s2">- **Risk averse** again after reaching the target</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="p">))</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">update_target</span><span class="p">(</span><span class="n">change</span><span class="p">):</span>
+    <span class="n">draw_target_curve</span><span class="p">(</span><span class="n">target</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">steepness</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+
+
+<span class="n">target</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="n">update_target</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
+<span class="n">steepness</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="n">update_target</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="s2">&quot;## Part 2 — Utility Curve with a Target Level&quot;</span><span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">widgets</span><span class="o">.</span><span class="n">VBox</span><span class="p">([</span><span class="n">target</span><span class="p">,</span> <span class="n">steepness</span><span class="p">]),</span> <span class="n">out_target</span><span class="p">)</span>
+<span class="n">draw_target_curve</span><span class="p">(</span><span class="n">target</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">steepness</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ─────────────────────────────────────────────────────────────</span>
+<span class="c1"># PART 3 — Zero-Illusion Utility Curve</span>
+<span class="c1"># ─────────────────────────────────────────────────────────────</span>
+
+<span class="n">zero_point</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">FloatSlider</span><span class="p">(</span>
+    <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="nb">min</span><span class="o">=-</span><span class="mi">100</span><span class="p">,</span>
+    <span class="nb">max</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">step</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Reference Zero ($K):&#39;</span><span class="p">,</span>
+    <span class="n">style</span><span class="o">=</span><span class="n">style</span><span class="p">,</span>
+    <span class="n">layout</span><span class="o">=</span><span class="n">layout</span>
+<span class="p">)</span>
+
+<span class="n">loss_aversion</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">FloatSlider</span><span class="p">(</span>
+    <span class="n">value</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span>
+    <span class="nb">min</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+    <span class="nb">max</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span>
+    <span class="n">step</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Loss Aversion:&#39;</span><span class="p">,</span>
+    <span class="n">style</span><span class="o">=</span><span class="n">style</span><span class="p">,</span>
+    <span class="n">layout</span><span class="o">=</span><span class="n">layout</span>
+<span class="p">)</span>
+
+<span class="n">out_zero</span> <span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">Output</span><span class="p">()</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">draw_zero_illusion</span><span class="p">(</span><span class="n">zero</span><span class="p">,</span> <span class="n">loss_factor</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">out_zero</span><span class="p">:</span>
+        <span class="n">out_zero</span><span class="o">.</span><span class="n">clear_output</span><span class="p">(</span><span class="n">wait</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">600</span><span class="p">)</span>
+        <span class="n">relative</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="n">zero</span>
+
+        <span class="c1"># Prospect-theory-like shape</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span>
+            <span class="n">relative</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">relative</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span>
+            <span class="o">-</span><span class="n">loss_factor</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">relative</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Normalize to 0–1 for display</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">y</span><span class="o">.</span><span class="n">min</span><span class="p">())</span> <span class="o">/</span> <span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">y</span><span class="o">.</span><span class="n">min</span><span class="p">())</span>
+
+        <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+        <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">zero</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">zero</span> <span class="o">+</span> <span class="mi">5</span><span class="p">,</span> <span class="mf">0.08</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Reference zero = </span><span class="si">{</span><span class="n">money_k</span><span class="p">(</span><span class="n">zero</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Zero-Illusion Utility Curve&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Profit in thousand dollars&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Utility&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.05</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+        <span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">This curve shows the **zero illusion** idea.</span>
+
+<span class="s2">The important point is that people react differently to gains and losses depending on what they treat as **zero**.</span>
+
+<span class="s2">Current reference zero: **</span><span class="si">{</span><span class="n">money_k</span><span class="p">(</span><span class="n">zero</span><span class="p">)</span><span class="si">}</span><span class="s2">**</span>
+
+<span class="s2">A person may act:</span>
+
+<span class="s2">- **Risk seeking below zero**, because they want to escape a loss</span>
+<span class="s2">- **Risk averse above zero**, because they want to protect gains</span>
+
+<span class="s2">Changing the reference zero changes how the same outcome feels.</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="p">))</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">update_zero</span><span class="p">(</span><span class="n">change</span><span class="p">):</span>
+    <span class="n">draw_zero_illusion</span><span class="p">(</span><span class="n">zero_point</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">loss_aversion</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+
+
+<span class="n">zero_point</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="n">update_zero</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
+<span class="n">loss_aversion</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="n">update_zero</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="s2">&quot;## Part 3 — Zero-Illusion Utility Curve&quot;</span><span class="p">))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">widgets</span><span class="o">.</span><span class="n">VBox</span><span class="p">([</span><span class="n">zero_point</span><span class="p">,</span> <span class="n">loss_aversion</span><span class="p">]),</span> <span class="n">out_zero</span><span class="p">)</span>
+<span class="n">draw_zero_illusion</span><span class="p">(</span><span class="n">zero_point</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">loss_aversion</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<h2 class="rubric" id="part-3-zero-illusion-utility-curve">Part 3 — Zero-Illusion Utility Curve</h2>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>VBox(children=(FloatSlider(value=0.0, description=&#39;Reference Zero ($K):&#39;, layout=Layout(width=&#39;500px&#39;), min=-1…
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Output()
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 
     <script type="text/x-thebe-config">

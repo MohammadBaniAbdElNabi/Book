@@ -170,7 +170,7 @@ parts:
   - file: content/Ch_7/7_2/7_2_1.md
   - file: content/Ch_7/7_2/7_2_2.md
   - file: content/Ch_7/7_3/7_3_1.md
-  - file: content/Ch_7/7_3/7_3_2.md
+  - file: content/Ch_7/7_3/7_3_2.ipynb
   - file: content/Ch_7/7_3/7_3_3.md
   - file: content/Ch_7/7_4/7_4.md
   - file: content/Ch_7/7_5/7_5_1.md
@@ -184,8 +184,8 @@ parts:
   - file: content/Ch_8/8_1/8_1.md
   - file: content/Ch_8/8_2/8_2.md
   - file: content/Ch_8/8_2/8_2_1.md
-  - file: content/Ch_8/8_2/8_2_2.md
-  - file: content/Ch_8/8_3/8_3.md
+  - file: content/Ch_8/8_2/8_2_2.ipynb
+  - file: content/Ch_8/8_3/8_3.ipynb
   - file: content/Ch_8/8_3/8_3_1_1.md
   - file: content/Ch_8/8_3/8_3_1_2.md
   - file: content/Ch_8/8_3/8_3_1_3.md
@@ -207,12 +207,12 @@ parts:
   - file: content/Ch_9/9_2/9_2_2
   - file: content/Ch_9/9_2/9_2_3
   - file: content/Ch_9/9_2/9_2_4
-  - file: content/Ch_9/9_2/9_2_5
-  - file: content/Ch_9/9_3/9_3
+  - file: content/Ch_9/9_2/9_2_5.ipynb
+  - file: content/Ch_9/9_3/9_3.ipynb
   - file: content/Ch_9/9_4/9_4
   - file: content/Ch_9/9_4/9_4_1
-  - file: content/Ch_9/9_4/9_4_2
-  - file: content/Ch_9/9_4/9_4_3
+  - file: content/Ch_9/9_4/9_4_2.ipynb
+  - file: content/Ch_9/9_4/9_4_3.ipynb
   - file: content/Ch_9/9_5/9_5
   - file: content/Ch_9/9_5/9_5_1
   - file: content/Ch_9/9_5/9_5_2
