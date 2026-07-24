@@ -479,6 +479,55 @@
 
 
 
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/MohammadBaniAbdElNabi/Book/main?urlpath=tree/content/Ch_6/6_5/6_5.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="../../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-download-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
     <i class="fas fa-download"></i>
@@ -487,7 +536,7 @@
       
       
       
-      <li><a href="../../../_sources/content/Ch_6/6_5/6_5.md" target="_blank"
+      <li><a href="../../../_sources/content/Ch_6/6_5/6_5.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -497,7 +546,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -577,6 +626,7 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="steady-state-analysis">
 <h1>6.5 STEADY-STATE ANALYSIS<a class="headerlink" href="#steady-state-analysis" title="Link to this heading">#</a></h1>
+<p><a class="reference external" href="https://colab.research.google.com/drive/1_Z-hNYJ26b-0PY7uHKED13oXo3Wy3tLi?usp=sharing"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
 <p>In Section 6.2, we noticed, while computing successively higher powers of the transition probability matrix, that state probabilities tended to stabilize regardless of the initial state of the system. This behavior is typical of ergodic Markov chains and is found in most practical applications. When we say that state probabilities become stable, what we really mean is that as the time parameter n becomes large, <span class="math notranslate nohighlight">\(\mathrm{P}^{(\mathrm{n}+1)}\)</span> is essentially the same as <span class="math notranslate nohighlight">\(\mathrm{P}^{(\mathrm{n})}\)</span>. Furthermore, the rows of <span class="math notranslate nohighlight">\(\mathrm{P}^{(\mathrm{n})}\)</span> begin to look identical as n grows large, which means that, independent of the initial state of the system, the probabilities of having evolved into each state after any large number of steps do not change. Mathematically, if P is the one-step transition probability matrix, then the powers of P approach a matrix <span class="math notranslate nohighlight">\([\mathscr{P}]\)</span> where</p>
 <div class="math notranslate nohighlight">
 \[
@@ -656,6 +706,131 @@
 \end{split}\]</div>
 <p>If we compare these results with the elements in the higher powers of <span class="math notranslate nohighlight">\(P\)</span> that we computed in Section 6.2 (as shown in Table 6.1), we find that indeed the value <span class="math notranslate nohighlight">\(\Pi_{1}=0.5135135\)</span> appears in all rows of column 1 , the value <span class="math notranslate nohighlight">\(\Pi_{2}=0.2972973\)</span> appears in all rows of column 2, and the value <span class="math notranslate nohighlight">\(\Pi_{3}=0.1891892\)</span> appears in all rows of column 3 . However, this pattern does not stabilize until we compute <span class="math notranslate nohighlight">\(\mathrm{P}^{\mathrm{n}}\)</span> for n values around 26 or 27. (The pattern becomes apparent at about <span class="math notranslate nohighlight">\(\mathrm{P}^{10}\)</span>, but small changes continue to be evident as we compute successively higher powers, up to about <span class="math notranslate nohighlight">\(\mathrm{P}^{27}\)</span>, after which no significant changes in <span class="math notranslate nohighlight">\(\mathrm{P}^{\mathrm{n}}\)</span> occur.)</p>
 <p>The computational effort required to raise P to the 27-th power is considerably greater than the effort required to solve the system of three equations. Furthermore, we have no way of knowing in advance just exactly what power of P needs to be computed. Exercise 6.2 will allow you to observe this contrast for yourself. Solving the steady-state equations is clearly the preferred method for determining the steady-state probabilities.</p>
+<p><strong>Code Implementation</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>pydtmc
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydtmc</span><span class="w"> </span><span class="kn">import</span> <span class="n">MarkovChain</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydtmc.plotting</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_graph</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Defaulting to user installation because normal site-packages is not writeable
+Requirement already satisfied: pydtmc in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (9.0.0)
+Requirement already satisfied: matplotlib&gt;=3.10 in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from pydtmc) (3.10.8)
+Requirement already satisfied: networkx in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from pydtmc) (3.6.1)
+Requirement already satisfied: numpy in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from pydtmc) (2.4.6)
+Requirement already satisfied: scipy in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from pydtmc) (1.17.1)
+Requirement already satisfied: contourpy&gt;=1.0.1 in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from matplotlib&gt;=3.10-&gt;pydtmc) (1.3.3)
+Requirement already satisfied: cycler&gt;=0.10 in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from matplotlib&gt;=3.10-&gt;pydtmc) (0.12.1)
+Requirement already satisfied: fonttools&gt;=4.22.0 in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from matplotlib&gt;=3.10-&gt;pydtmc) (4.61.1)
+Requirement already satisfied: kiwisolver&gt;=1.3.1 in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from matplotlib&gt;=3.10-&gt;pydtmc) (1.4.9)
+Requirement already satisfied: packaging&gt;=20.0 in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from matplotlib&gt;=3.10-&gt;pydtmc) (26.2)
+Requirement already satisfied: pillow&gt;=8 in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from matplotlib&gt;=3.10-&gt;pydtmc) (9.5.0)
+Requirement already satisfied: pyparsing&gt;=3 in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from matplotlib&gt;=3.10-&gt;pydtmc) (3.2.5)
+Requirement already satisfied: python-dateutil&gt;=2.7 in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from matplotlib&gt;=3.10-&gt;pydtmc) (2.9.0.post0)
+Requirement already satisfied: six&gt;=1.5 in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from python-dateutil&gt;=2.7-&gt;matplotlib&gt;=3.10-&gt;pydtmc) (1.17.0)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">P</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.7</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.2</span><span class="p">],[</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.7</span><span class="p">,</span><span class="mf">0.1</span><span class="p">],[</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.3</span><span class="p">]])</span>
+<span class="n">states</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Sunny&#39;</span><span class="p">,</span><span class="s1">&#39;Cloudy&#39;</span><span class="p">,</span><span class="s1">&#39;Snowing&#39;</span><span class="p">]</span>
+<span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
+
+<span class="c1"># ── Method 1: Textbook exact linear system (p.265) ───────────────────────</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;=== 6.5 Steady-State Analysis ===&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Textbook linear system:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;  0.1·Π1 - 0.3·Π2 + 0.2·Π3 = 0   (from row 2 of ΠP=Π)&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;  0.2·Π1 + 0.1·Π2 - 0.7·Π3 = 0   (from row 3 of ΠP=Π)&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;  Π1  +  Π2  +  Π3           = 1   (normalisation)&#39;</span><span class="p">)</span>
+
+<span class="n">A_tb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span> <span class="mf">0.1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3</span><span class="p">,</span>  <span class="mf">0.2</span><span class="p">],</span>
+                 <span class="p">[</span> <span class="mf">0.2</span><span class="p">,</span>  <span class="mf">0.1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.7</span><span class="p">],</span>
+                 <span class="p">[</span> <span class="mf">1.0</span><span class="p">,</span>  <span class="mf">1.0</span><span class="p">,</span>  <span class="mf">1.0</span><span class="p">]])</span>
+<span class="n">b_tb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])</span>
+<span class="n">Pi_tb</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A_tb</span><span class="p">,</span> <span class="n">b_tb</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Solution (numpy.linalg.solve — Method 1, textbook system):&#39;</span><span class="p">)</span>
+<span class="n">tb_vals</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.5135135</span><span class="p">,</span> <span class="mf">0.2972973</span><span class="p">,</span> <span class="mf">0.1891892</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">states</span><span class="p">):</span>
+    <span class="n">ok</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">Pi_tb</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">-</span><span class="n">tb_vals</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="o">&lt;</span> <span class="mf">1e-6</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  Π_</span><span class="si">{</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1"> (</span><span class="si">{</span><span class="n">s</span><span class="si">:</span><span class="s1">&lt;8</span><span class="si">}</span><span class="s1">) = </span><span class="si">{</span><span class="n">Pi_tb</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="si">:</span><span class="s1">.7f</span><span class="si">}</span><span class="s1">   Textbook: </span><span class="si">{</span><span class="n">tb_vals</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="si">:</span><span class="s1">.7f</span><span class="si">}</span><span class="s1">  </span><span class="si">{</span><span class="s2">&quot;✓&quot;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">ok</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s2">&quot;✗&quot;</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># ── Method 2: General formula (P^T - I) ──────────────────────────────────</span>
+<span class="n">A_gen</span> <span class="o">=</span> <span class="p">(</span><span class="n">P</span><span class="o">.</span><span class="n">T</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">N</span><span class="p">))</span>
+<span class="n">A_gen</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">b_gen</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">);</span> <span class="n">b_gen</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">Pi_gen</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A_gen</span><span class="p">,</span> <span class="n">b_gen</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Solution (Method 2 — general (P^T−I) system):&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">states</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  Π_</span><span class="si">{</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1"> (</span><span class="si">{</span><span class="n">s</span><span class="si">:</span><span class="s1">&lt;8</span><span class="si">}</span><span class="s1">) = </span><span class="si">{</span><span class="n">Pi_gen</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="si">:</span><span class="s1">.7f</span><span class="si">}</span><span class="s1">   &#39;</span>
+          <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="s2">&quot;✓&quot;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">Pi_gen</span><span class="p">[</span><span class="n">j</span><span class="p">],</span><span class="w"> </span><span class="n">Pi_tb</span><span class="p">[</span><span class="n">j</span><span class="p">])</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s2">&quot;✗&quot;</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># ── Method 3: pydtmc (one line) ───────────────────────────────────────────</span>
+<span class="n">mc</span> <span class="o">=</span> <span class="n">MarkovChain</span><span class="p">(</span><span class="n">P</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">states</span><span class="p">)</span>
+<span class="n">Pi_lib</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">steady_states</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Solution (Method 3 — pydtmc mc.steady_states):&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">states</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  Π_</span><span class="si">{</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1"> (</span><span class="si">{</span><span class="n">s</span><span class="si">:</span><span class="s1">&lt;8</span><span class="si">}</span><span class="s1">) = </span><span class="si">{</span><span class="n">Pi_lib</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="si">:</span><span class="s1">.7f</span><span class="si">}</span><span class="s1">   &#39;</span>
+          <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="s2">&quot;✓&quot;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">Pi_lib</span><span class="p">[</span><span class="n">j</span><span class="p">],</span><span class="w"> </span><span class="n">Pi_tb</span><span class="p">[</span><span class="n">j</span><span class="p">])</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s2">&quot;✗&quot;</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># ── Verification ──────────────────────────────────────────────────────────</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Verification Π·P = Π:&#39;</span><span class="p">)</span>
+<span class="n">PiP</span> <span class="o">=</span> <span class="n">Pi_gen</span> <span class="o">@</span> <span class="n">P</span>
+<span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">states</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  (Π·P)[</span><span class="si">{</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">] = </span><span class="si">{</span><span class="n">PiP</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="si">:</span><span class="s1">.7f</span><span class="si">}</span><span class="s1">   Π[</span><span class="si">{</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">] = </span><span class="si">{</span><span class="n">Pi_gen</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="si">:</span><span class="s1">.7f</span><span class="si">}</span><span class="s1">   &#39;</span>
+          <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="s2">&quot;✓&quot;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="nb">abs</span><span class="p">(</span><span class="n">PiP</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">-</span><span class="n">Pi_gen</span><span class="p">[</span><span class="n">j</span><span class="p">])</span><span class="o">&lt;</span><span class="mf">1e-9</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s2">&quot;✗&quot;</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Interpretation:&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">states</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  In the long run </span><span class="si">{</span><span class="n">Pi_gen</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">% of days are </span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== 6.5 Steady-State Analysis ===
+
+Textbook linear system:
+  0.1·Π1 - 0.3·Π2 + 0.2·Π3 = 0   (from row 2 of ΠP=Π)
+  0.2·Π1 + 0.1·Π2 - 0.7·Π3 = 0   (from row 3 of ΠP=Π)
+  Π1  +  Π2  +  Π3           = 1   (normalisation)
+
+Solution (numpy.linalg.solve — Method 1, textbook system):
+  Π_1 (Sunny   ) = 0.5135135   Textbook: 0.5135135  ✓
+  Π_2 (Cloudy  ) = 0.2972973   Textbook: 0.2972973  ✓
+  Π_3 (Snowing ) = 0.1891892   Textbook: 0.1891892  ✓
+
+Solution (Method 2 — general (P^T−I) system):
+  Π_1 (Sunny   ) = 0.5135135   ✓
+  Π_2 (Cloudy  ) = 0.2972973   ✓
+  Π_3 (Snowing ) = 0.1891892   ✓
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Solution (Method 3 — pydtmc mc.steady_states):
+  Π_1 (Sunny   ) = 0.5135135   ✓
+  Π_2 (Cloudy  ) = 0.2972973   ✓
+  Π_3 (Snowing ) = 0.1891892   ✓
+
+Verification Π·P = Π:
+  (Π·P)[1] = 0.5135135   Π[1] = 0.5135135   ✓
+  (Π·P)[2] = 0.2972973   Π[2] = 0.2972973   ✓
+  (Π·P)[3] = 0.1891892   Π[3] = 0.1891892   ✓
+
+Interpretation:
+  In the long run 51.35% of days are Sunny
+  In the long run 29.73% of days are Cloudy
+  In the long run 18.92% of days are Snowing
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 
     <script type="text/x-thebe-config">

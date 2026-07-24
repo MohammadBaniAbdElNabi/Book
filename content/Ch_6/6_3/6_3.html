@@ -479,6 +479,55 @@
 
 
 
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/MohammadBaniAbdElNabi/Book/main?urlpath=tree/content/Ch_6/6_3/6_3.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="../../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-download-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
     <i class="fas fa-download"></i>
@@ -487,7 +536,7 @@
       
       
       
-      <li><a href="../../../_sources/content/Ch_6/6_3/6_3.md" target="_blank"
+      <li><a href="../../../_sources/content/Ch_6/6_3/6_3.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -497,7 +546,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -577,6 +626,7 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="first-passage-probabilities">
 <h1>6.3 FIRST PASSAGE PROBABILITIES<a class="headerlink" href="#first-passage-probabilities" title="Link to this heading">#</a></h1>
+<p><a class="reference external" href="https://colab.research.google.com/drive/1oUBD9r-jjyFoGdK-gShOSPiXIWev2IWy?usp=sharing"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
 <p>In a typical Markov chain, we frequently observe that states are left and re-entered again and again. We have developed a means of computing the probability <span class="math notranslate nohighlight">\(\mathrm{p}^{(\mathrm{n})}{ }_{\mathrm{ij}}\)</span> that a system will leave state i and be in state j after n transitions. But this does not give us any information about whether the system entered state j at any time before the n -th transition. Suppose we are specifically interested in the probability that a system leaves state <span class="math notranslate nohighlight">\(i\)</span> and enters state j for the first time after n steps. This is called the first passage probability, and it is clearly related to the n-step probability. However, we must exclude all the ways in which the system may have entered state j before the n -th transition. For example, if we know the probability of a cloudy day on the slopes being followed three days later by a sunny day, we realize that this three-step transition can occur in several ways:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -671,6 +721,136 @@ f^{(n)}{ }_{i j}=p^{(n)}{ }_{i j}-\sum_{k=1}^{n-1} f^{(k)}{ }_{i j} p^{(n-k)}{ }
 \end{aligned}
 \end{split}\]</div>
 <p>which is exactly the value we computed earlier as the element <span class="math notranslate nohighlight">\(\mathrm{f}^{(3)}{ }_{21}\)</span> in the matrix <span class="math notranslate nohighlight">\(\mathrm{F}^{(3)}\)</span>.</p>
+<p><strong>Code Implementation</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>pydtmc
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydtmc</span><span class="w"> </span><span class="kn">import</span> <span class="n">MarkovChain</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Defaulting to user installation because normal site-packages is not writeable
+Requirement already satisfied: pydtmc in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (9.0.0)
+Requirement already satisfied: matplotlib&gt;=3.10 in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from pydtmc) (3.10.8)
+Requirement already satisfied: networkx in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from pydtmc) (3.6.1)
+Requirement already satisfied: numpy in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from pydtmc) (2.4.6)
+Requirement already satisfied: scipy in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from pydtmc) (1.17.1)
+Requirement already satisfied: contourpy&gt;=1.0.1 in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from matplotlib&gt;=3.10-&gt;pydtmc) (1.3.3)
+Requirement already satisfied: cycler&gt;=0.10 in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from matplotlib&gt;=3.10-&gt;pydtmc) (0.12.1)
+Requirement already satisfied: fonttools&gt;=4.22.0 in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from matplotlib&gt;=3.10-&gt;pydtmc) (4.61.1)
+Requirement already satisfied: kiwisolver&gt;=1.3.1 in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from matplotlib&gt;=3.10-&gt;pydtmc) (1.4.9)
+Requirement already satisfied: packaging&gt;=20.0 in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from matplotlib&gt;=3.10-&gt;pydtmc) (26.2)
+Requirement already satisfied: pillow&gt;=8 in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from matplotlib&gt;=3.10-&gt;pydtmc) (9.5.0)
+Requirement already satisfied: pyparsing&gt;=3 in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from matplotlib&gt;=3.10-&gt;pydtmc) (3.2.5)
+Requirement already satisfied: python-dateutil&gt;=2.7 in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from matplotlib&gt;=3.10-&gt;pydtmc) (2.9.0.post0)
+Requirement already satisfied: six&gt;=1.5 in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from python-dateutil&gt;=2.7-&gt;matplotlib&gt;=3.10-&gt;pydtmc) (1.17.0)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">P</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.7</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.2</span><span class="p">],[</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.7</span><span class="p">,</span><span class="mf">0.1</span><span class="p">],[</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.3</span><span class="p">]])</span>
+<span class="n">states</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Sunny&#39;</span><span class="p">,</span><span class="s1">&#39;Cloudy&#39;</span><span class="p">,</span><span class="s1">&#39;Snowing&#39;</span><span class="p">]</span>
+<span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
+
+<span class="c1"># ── Algebraic: recursive formula from textbook p.260 ─────────────────────</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">first_passage_matrices</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">max_n</span><span class="p">):</span>
+    <span class="n">Pn</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">N</span><span class="p">)]</span> <span class="o">+</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span><span class="o">*</span><span class="n">max_n</span>
+    <span class="n">Fn</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">max_n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">Pn</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">Pn</span><span class="p">[</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">@</span> <span class="n">P</span>
+    <span class="n">Fn</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">Pn</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">max_n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">Fn</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">Pn</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+                    <span class="n">Fn</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">-=</span> <span class="n">Fn</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">*</span> <span class="n">Pn</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">,</span><span class="n">j</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">Fn</span>
+
+<span class="n">Fn</span> <span class="o">=</span> <span class="n">first_passage_matrices</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;=== First Passage Probability Matrices (pp.260-261) ===&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]:</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">Fn</span><span class="p">[</span><span class="n">n</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">states</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">states</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">F(</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s1">) — algebraic formula:&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">to_string</span><span class="p">())</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Verification:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  f(2)[Sunny,Sunny]  = </span><span class="si">{</span><span class="n">Fn</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">   Textbook: 0.12  &#39;</span>
+      <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="s2">&quot;✓&quot;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="nb">abs</span><span class="p">(</span><span class="n">Fn</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mf">0.12</span><span class="p">)</span><span class="o">&lt;</span><span class="mf">0.001</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s2">&quot;✗&quot;</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  f(3)[Cloudy,Sunny] = </span><span class="si">{</span><span class="n">Fn</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">   Textbook: 0.152 &#39;</span>
+      <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="s2">&quot;✓&quot;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="nb">abs</span><span class="p">(</span><span class="n">Fn</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mf">0.152</span><span class="p">)</span><span class="o">&lt;</span><span class="mf">0.001</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s2">&quot;✗&quot;</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Textbook manual check for f(3)_21 (p.261):&#39;</span><span class="p">)</span>
+<span class="n">manual</span> <span class="o">=</span> <span class="mf">0.407</span> <span class="o">-</span> <span class="mf">0.098</span> <span class="o">-</span> <span class="mf">0.098</span> <span class="o">-</span> <span class="mf">0.035</span> <span class="o">-</span> <span class="mf">0.020</span> <span class="o">-</span> <span class="mf">0.004</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  0.407 - 0.098 - 0.098 - 0.035 - 0.020 - 0.004 = </span><span class="si">{</span><span class="n">manual</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">  ✓&#39;</span><span class="p">)</span>
+
+<span class="c1"># ── pydtmc: first_passage_probabilities ───────────────────────────────────</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">=== pydtmc first_passage_probabilities ===&#39;</span><span class="p">)</span>
+<span class="n">mc</span> <span class="o">=</span> <span class="n">MarkovChain</span><span class="p">(</span><span class="n">P</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">states</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">sj</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">states</span><span class="p">):</span>
+    <span class="n">Fn_lib</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">first_passage_probabilities</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">sj</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">First passage probabilities to </span><span class="si">{</span><span class="n">sj</span><span class="si">}</span><span class="s1">:&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]:</span>
+        <span class="n">row</span> <span class="o">=</span> <span class="p">{</span><span class="n">si</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">Fn_lib</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">i</span><span class="p">],</span><span class="mi">4</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">si</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">states</span><span class="p">)}</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  F(</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s1">): </span><span class="si">{</span><span class="n">row</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== First Passage Probability Matrices (pp.260-261) ===
+
+F(1) — algebraic formula:
+         Sunny  Cloudy  Snowing
+Sunny      0.7     0.1      0.2
+Cloudy     0.2     0.7      0.1
+Snowing    0.5     0.2      0.3
+
+F(2) — algebraic formula:
+         Sunny  Cloudy  Snowing
+Sunny     0.12    0.11     0.15
+Cloudy    0.19    0.04     0.11
+Snowing   0.19    0.11     0.12
+
+F(3) — algebraic formula:
+         Sunny  Cloudy  Snowing
+Sunny    0.057   0.099    0.116
+Cloudy   0.152   0.033    0.107
+Snowing  0.095   0.088    0.097
+
+Verification:
+  f(2)[Sunny,Sunny]  = 0.1200   Textbook: 0.12  ✓
+  f(3)[Cloudy,Sunny] = 0.1520   Textbook: 0.152 ✓
+
+Textbook manual check for f(3)_21 (p.261):
+  0.407 - 0.098 - 0.098 - 0.035 - 0.020 - 0.004 = 0.152  ✓
+
+=== pydtmc first_passage_probabilities ===
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>First passage probabilities to Sunny:
+  F(1): {&#39;Sunny&#39;: np.float64(0.7), &#39;Cloudy&#39;: np.float64(0.1), &#39;Snowing&#39;: np.float64(0.2)}
+  F(2): {&#39;Sunny&#39;: np.float64(0.12), &#39;Cloudy&#39;: np.float64(0.11), &#39;Snowing&#39;: np.float64(0.15)}
+  F(3): {&#39;Sunny&#39;: np.float64(0.057), &#39;Cloudy&#39;: np.float64(0.099), &#39;Snowing&#39;: np.float64(0.116)}
+
+First passage probabilities to Cloudy:
+  F(1): {&#39;Sunny&#39;: np.float64(0.2), &#39;Cloudy&#39;: np.float64(0.7), &#39;Snowing&#39;: np.float64(0.1)}
+  F(2): {&#39;Sunny&#39;: np.float64(0.19), &#39;Cloudy&#39;: np.float64(0.04), &#39;Snowing&#39;: np.float64(0.11)}
+  F(3): {&#39;Sunny&#39;: np.float64(0.152), &#39;Cloudy&#39;: np.float64(0.033), &#39;Snowing&#39;: np.float64(0.107)}
+
+First passage probabilities to Snowing:
+  F(1): {&#39;Sunny&#39;: np.float64(0.5), &#39;Cloudy&#39;: np.float64(0.2), &#39;Snowing&#39;: np.float64(0.3)}
+  F(2): {&#39;Sunny&#39;: np.float64(0.19), &#39;Cloudy&#39;: np.float64(0.11), &#39;Snowing&#39;: np.float64(0.12)}
+  F(3): {&#39;Sunny&#39;: np.float64(0.095), &#39;Cloudy&#39;: np.float64(0.088), &#39;Snowing&#39;: np.float64(0.097)}
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 
     <script type="text/x-thebe-config">

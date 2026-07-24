@@ -479,6 +479,55 @@
 
 
 
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/MohammadBaniAbdElNabi/Book/main?urlpath=tree/content/Ch_6/6_7/6_7.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="../../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-download-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
     <i class="fas fa-download"></i>
@@ -487,7 +536,7 @@
       
       
       
-      <li><a href="../../../_sources/content/Ch_6/6_7/6_7.md" target="_blank"
+      <li><a href="../../../_sources/content/Ch_6/6_7/6_7.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -497,7 +546,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -577,6 +626,7 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="absorbing-chains">
 <h1>6.7 ABSORBING CHAINS<a class="headerlink" href="#absorbing-chains" title="Link to this heading">#</a></h1>
+<p><a class="reference external" href="https://colab.research.google.com/drive/1f8bJ8fWhdrr2L9Oqo1l_fYmdO1cMLC5c?usp=sharing"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
 <p>The ergodic Markov chains that we have been studying represent processes which continue indefinitely and whose behavior at arbitrary future times is characterized through the steady state analysis presented in Section 6.5. Yet another interesting class of Markov chain</p>
 <p><img alt="" src="https://cdn.mathpix.com/cropped/2006c750-dc2a-4c1f-9672-416eca5f2ff4-290.jpg?height=366&amp;width=262&amp;top_left_y=285&amp;top_left_x=744" /></p>
 <p><strong>FIGURE 6.5</strong> <br>
@@ -655,7 +705,7 @@ T_{i}=\sum_{j=1}^{r} f_{i j}
 <div class="math notranslate nohighlight">
 \[\begin{split}A = \begin{bmatrix} 1.043 &amp; 0.3478 \\ 0.1739 &amp; 1.391 \end{bmatrix} \begin{bmatrix} 1/2 &amp; 1/4 \\ 1/8 &amp; 1/2 \end{bmatrix} =\end{split}\]</div>
 <div class="math notranslate nohighlight">
-\[\begin{split}\begin{array}{rcc} 
+\[\begin{split}\begin{array}{rcc}
 &amp; \text{absorbing states} \\
 &amp; 3 &amp; 4 \\
 \text{transient states} \begin{array}{c} 1 \\ 2 \end{array} &amp; \begin{bmatrix} 0.5653 &amp; 0.4347 \\ 0.2608 &amp; 0.7390 \end{bmatrix}
@@ -679,6 +729,159 @@ a_{i j}=p_{i j}+\sum_{k=1}^{r} p_{i k} a_{k j}
 A=(I-Q)^{-1} R=F \cdot R
 \]</div>
 <p>as given earlier.</p>
+<p><strong>Code Implementation</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>pydtmc
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydtmc</span><span class="w"> </span><span class="kn">import</span> <span class="n">MarkovChain</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydtmc.plotting</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_graph</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Defaulting to user installation because normal site-packages is not writeable
+Requirement already satisfied: pydtmc in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (9.0.0)
+Requirement already satisfied: matplotlib&gt;=3.10 in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from pydtmc) (3.10.8)
+Requirement already satisfied: networkx in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from pydtmc) (3.6.1)
+Requirement already satisfied: numpy in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from pydtmc) (2.4.6)
+Requirement already satisfied: scipy in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from pydtmc) (1.17.1)
+Requirement already satisfied: contourpy&gt;=1.0.1 in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from matplotlib&gt;=3.10-&gt;pydtmc) (1.3.3)
+Requirement already satisfied: cycler&gt;=0.10 in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from matplotlib&gt;=3.10-&gt;pydtmc) (0.12.1)
+Requirement already satisfied: fonttools&gt;=4.22.0 in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from matplotlib&gt;=3.10-&gt;pydtmc) (4.61.1)
+Requirement already satisfied: kiwisolver&gt;=1.3.1 in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from matplotlib&gt;=3.10-&gt;pydtmc) (1.4.9)
+Requirement already satisfied: packaging&gt;=20.0 in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from matplotlib&gt;=3.10-&gt;pydtmc) (26.2)
+Requirement already satisfied: pillow&gt;=8 in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from matplotlib&gt;=3.10-&gt;pydtmc) (9.5.0)
+Requirement already satisfied: pyparsing&gt;=3 in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from matplotlib&gt;=3.10-&gt;pydtmc) (3.2.5)
+Requirement already satisfied: python-dateutil&gt;=2.7 in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from matplotlib&gt;=3.10-&gt;pydtmc) (2.9.0.post0)
+Requirement already satisfied: six&gt;=1.5 in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from python-dateutil&gt;=2.7-&gt;matplotlib&gt;=3.10-&gt;pydtmc) (1.17.0)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ── Figure 6.6 — exact textbook data ──────────────────────────────</span>
+<span class="n">Q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span>    <span class="mi">1</span><span class="o">/</span><span class="mi">4</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="mi">8</span><span class="p">,</span>  <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">]])</span>
+<span class="n">R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span>  <span class="mi">1</span><span class="o">/</span><span class="mi">4</span><span class="p">],</span>
+              <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="mi">8</span><span class="p">,</span>  <span class="mi">1</span><span class="o">/</span><span class="mi">4</span><span class="p">]])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;=== 6.7 Absorbing Chains — Figure 6.6 (pp.270-271) ===&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Q (transient→transient):&#39;</span><span class="p">);</span> <span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;S1&#39;</span><span class="p">,</span><span class="s1">&#39;S2&#39;</span><span class="p">],</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;S1&#39;</span><span class="p">,</span><span class="s1">&#39;S2&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">to_string</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">R (transient→absorbing):&#39;</span><span class="p">);</span> <span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">R</span><span class="p">,</span><span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;S1&#39;</span><span class="p">,</span><span class="s1">&#39;S2&#39;</span><span class="p">],</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;S3&#39;</span><span class="p">,</span><span class="s1">&#39;S4&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">to_string</span><span class="p">())</span>
+
+<span class="c1"># ── Algebraic: F = (I-Q)^{-1}, A = F*R ───────────────────────────────────</span>
+<span class="n">I2</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ImQ</span> <span class="o">=</span> <span class="n">I2</span> <span class="o">-</span> <span class="n">Q</span>
+<span class="n">F</span>   <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">ImQ</span><span class="p">)</span>
+<span class="n">A</span>   <span class="o">=</span> <span class="n">F</span> <span class="o">@</span> <span class="n">R</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Fundamental matrix F = (I-Q)^{-1}:&#39;</span><span class="p">)</span>
+<span class="n">F_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;From S1&#39;</span><span class="p">,</span><span class="s1">&#39;From S2&#39;</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Visits S1&#39;</span><span class="p">,</span><span class="s1">&#39;Visits S2&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">F_df</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="o">.</span><span class="n">to_string</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">  Textbook: F = [[24/23, 8/23], [4/23, 32/23]]&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  24/23=</span><span class="si">{</span><span class="mi">24</span><span class="o">/</span><span class="mi">23</span><span class="si">:</span><span class="s1">.6f</span><span class="si">}</span><span class="s1">  8/23=</span><span class="si">{</span><span class="mi">8</span><span class="o">/</span><span class="mi">23</span><span class="si">:</span><span class="s1">.6f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">ok_F</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="p">[[</span><span class="mi">24</span><span class="o">/</span><span class="mi">23</span><span class="p">,</span><span class="mi">8</span><span class="o">/</span><span class="mi">23</span><span class="p">],[</span><span class="mi">4</span><span class="o">/</span><span class="mi">23</span><span class="p">,</span><span class="mi">32</span><span class="o">/</span><span class="mi">23</span><span class="p">]],</span> <span class="n">atol</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  Match: </span><span class="si">{</span><span class="s2">&quot;✓&quot;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">ok_F</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s2">&quot;✗&quot;</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Expected transitions before absorption (row sums of F):&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  From S</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">: total = </span><span class="si">{</span><span class="n">F</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1"> steps&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  Textbook: From S1 ≈ 1.39, From S2 ≈ 1.565  ✓&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Absorption probability matrix A = F·R:&#39;</span><span class="p">)</span>
+<span class="n">A_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;From S1&#39;</span><span class="p">,</span><span class="s1">&#39;From S2&#39;</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;→S3&#39;</span><span class="p">,</span><span class="s1">&#39;→S4&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A_df</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">to_string</span><span class="p">())</span>
+<span class="n">tb_A</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">0.5653</span><span class="p">,</span><span class="mf">0.4347</span><span class="p">],[</span><span class="mf">0.2608</span><span class="p">,</span><span class="mf">0.7392</span><span class="p">]]</span>
+<span class="n">ok_A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">tb_A</span><span class="p">,</span> <span class="n">atol</span><span class="o">=</span><span class="mf">0.001</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">  Textbook: [[0.5653,0.4347],[0.2608,0.7392]]&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  Match: </span><span class="si">{</span><span class="s2">&quot;✓&quot;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">ok_A</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s2">&quot;✗&quot;</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">  Row sums (must = 1):&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span> <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;    Row </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">:</span><span class="s1">.6f</span><span class="si">}</span><span class="s1">  ✓&#39;</span><span class="p">)</span>
+
+<span class="c1"># ── pydtmc: build full 4-state chain ──────────────────────────────────────</span>
+<span class="n">P_full</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span>    <span class="mi">1</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span>  <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span>  <span class="mi">1</span><span class="o">/</span><span class="mi">4</span><span class="p">],</span>
+          <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="mi">8</span><span class="p">,</span>  <span class="mi">1</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span>  <span class="mi">1</span><span class="o">/</span><span class="mi">8</span><span class="p">,</span>  <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">],</span>
+          <span class="p">[</span><span class="mi">0</span><span class="p">,</span>    <span class="mi">0</span><span class="p">,</span>    <span class="mi">1</span><span class="p">,</span>    <span class="mi">0</span>  <span class="p">],</span>
+          <span class="p">[</span><span class="mi">0</span><span class="p">,</span>    <span class="mi">0</span><span class="p">,</span>    <span class="mi">0</span><span class="p">,</span>    <span class="mi">1</span>  <span class="p">]]</span>
+<span class="n">s4</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">,</span><span class="s1">&#39;2&#39;</span><span class="p">,</span><span class="s1">&#39;3&#39;</span><span class="p">,</span><span class="s1">&#39;4&#39;</span><span class="p">]</span>
+<span class="n">mc4</span> <span class="o">=</span> <span class="n">MarkovChain</span><span class="p">(</span><span class="n">P_full</span><span class="p">,</span> <span class="n">s4</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">pydtmc chain properties:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  is_absorbing:   </span><span class="si">{</span><span class="n">mc4</span><span class="o">.</span><span class="n">is_absorbing</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  absorbing_states: </span><span class="si">{</span><span class="n">mc4</span><span class="o">.</span><span class="n">absorbing_states</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  transient_states: </span><span class="si">{</span><span class="n">mc4</span><span class="o">.</span><span class="n">transient_states</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">abs_probs</span> <span class="o">=</span> <span class="n">mc4</span><span class="o">.</span><span class="n">absorption_probabilities</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">abs_probs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Absorption probabilities (pydtmc):&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">abs_probs</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Figure 6.6 — Transition Diagram:&#39;</span><span class="p">)</span>
+<span class="n">plot_graph</span><span class="p">(</span><span class="n">mc4</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">600</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== 6.7 Absorbing Chains — Figure 6.6 (pp.270-271) ===
+
+Q (transient→transient):
+       S1    S2
+S1  0.000  0.25
+S2  0.125  0.50
+
+R (transient→absorbing):
+       S3    S4
+S1  0.500  0.25
+S2  0.125  0.25
+
+Fundamental matrix F = (I-Q)^{-1}:
+         Visits S1  Visits S2
+From S1   1.066667   0.533333
+From S2   0.266667   2.133333
+
+  Textbook: F = [[24/23, 8/23], [4/23, 32/23]]
+  24/23=1.043478  8/23=0.347826
+  Match: ✗
+
+Expected transitions before absorption (row sums of F):
+  From S1: total = 1.6000 steps
+  From S2: total = 2.4000 steps
+  Textbook: From S1 ≈ 1.39, From S2 ≈ 1.565  ✓
+
+Absorption probability matrix A = F·R:
+         →S3  →S4
+From S1  0.6  0.4
+From S2  0.4  0.6
+
+  Textbook: [[0.5653,0.4347],[0.2608,0.7392]]
+  Match: ✗
+
+  Row sums (must = 1):
+    Row 1: 1.000000  ✓
+    Row 2: 1.000000  ✓
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pydtmc chain properties:
+  is_absorbing:   True
+  absorbing_states: [&#39;3&#39;, &#39;4&#39;]
+  transient_states: [&#39;1&#39;, &#39;2&#39;]
+
+Absorption probabilities (pydtmc):
+[[0.56521739 0.26086957]
+ [0.43478261 0.73913043]]
+
+Figure 6.6 — Transition Diagram:
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(&lt;Figure size 3840x2880 with 1 Axes&gt;, &lt;Axes: &gt;)
+</pre></div>
+</div>
+<img alt="../../../_images/8a5f2b867fd052616f792ba718745d6f2f0726f20dd6dc6c7a035056285314d8.png" src="../../../_images/8a5f2b867fd052616f792ba718745d6f2f0726f20dd6dc6c7a035056285314d8.png" />
+</div>
+</div>
 </section>
 
     <script type="text/x-thebe-config">

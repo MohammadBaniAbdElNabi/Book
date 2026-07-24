@@ -479,6 +479,55 @@
 
 
 
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/MohammadBaniAbdElNabi/Book/main?urlpath=tree/content/Ch_6/6_4/6_4.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="../../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-download-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
     <i class="fas fa-download"></i>
@@ -487,7 +536,7 @@
       
       
       
-      <li><a href="../../../_sources/content/Ch_6/6_4/6_4.md" target="_blank"
+      <li><a href="../../../_sources/content/Ch_6/6_4/6_4.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -497,7 +546,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -577,6 +626,7 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="properties-of-the-states-in-a-markov-process">
 <h1>6.4 PROPERTIES OF THE STATES IN A MARKOV PROCESS<a class="headerlink" href="#properties-of-the-states-in-a-markov-process" title="Link to this heading">#</a></h1>
+<p><a class="reference external" href="https://colab.research.google.com/drive/1OQYqNRdOL8JlvK8uvQKRk6VnUy2pIi2q?usp=sharing"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
 <p>Before continuing with our analysis of the long-term behavior of Markov processes, we must define some of the properties of the states that can be occupied by a Markov process. As we will see, the particular patterns with which transitions occur into and out of a state have a great deal to do with the role which that state plays in the eventual behavioral trends of a system.
 A state j is reachable from state i if there is a sequence of transitions that begins in state i and ends in state j . This is, <span class="math notranslate nohighlight">\(\mathrm{p}^{(\mathrm{n})}{ }_{\mathrm{ij}}&gt;0\)</span> for some n .
 An irreducible Markov chain is one in which every state is reachable from every other state. That is, in an irreducible chain, it is not possible for the process to become trapped and thereafter to make transitions only within some subset of the states.
@@ -606,6 +656,118 @@ Transition diagram with transient and recurrent states.</p>
 (a,b) Periodic states.</p>
 <p>If a state can be occupied at any time, then it is said to have period 1, or to be aperiodic. In an irreducible chain, all states are either aperiodic, or are periodic and all have the same period. An irreducible finite-state Markov chain in which all states are aperiodic is called an ergodic Markov chain.
 In the limit, as time goes to infinity, the occupancy of periodic states never stabilizes because these states are likely to be occupied at certain times and yet cannot be occupied at other times. Similarly, in the long run, transient states are not of interest because they are eventually left and not re-entered. If we eliminate periodic and transient states from our consideration, and focus on ergodic processes, we find that we can further characterize the limiting behavior of a Markov process. In the following sections, we will describe the calculations for two such behavioral characteristics observed in Markov processes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>pydtmc
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydtmc</span><span class="w"> </span><span class="kn">import</span> <span class="n">MarkovChain</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydtmc.plotting</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_graph</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Defaulting to user installation because normal site-packages is not writeable
+Requirement already satisfied: pydtmc in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (9.0.0)
+Requirement already satisfied: matplotlib&gt;=3.10 in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from pydtmc) (3.10.8)
+Requirement already satisfied: networkx in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from pydtmc) (3.6.1)
+Requirement already satisfied: numpy in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from pydtmc) (2.4.6)
+Requirement already satisfied: scipy in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from pydtmc) (1.17.1)
+Requirement already satisfied: contourpy&gt;=1.0.1 in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from matplotlib&gt;=3.10-&gt;pydtmc) (1.3.3)
+Requirement already satisfied: cycler&gt;=0.10 in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from matplotlib&gt;=3.10-&gt;pydtmc) (0.12.1)
+Requirement already satisfied: fonttools&gt;=4.22.0 in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from matplotlib&gt;=3.10-&gt;pydtmc) (4.61.1)
+Requirement already satisfied: kiwisolver&gt;=1.3.1 in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from matplotlib&gt;=3.10-&gt;pydtmc) (1.4.9)
+Requirement already satisfied: packaging&gt;=20.0 in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from matplotlib&gt;=3.10-&gt;pydtmc) (26.2)
+Requirement already satisfied: pillow&gt;=8 in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from matplotlib&gt;=3.10-&gt;pydtmc) (9.5.0)
+Requirement already satisfied: pyparsing&gt;=3 in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from matplotlib&gt;=3.10-&gt;pydtmc) (3.2.5)
+Requirement already satisfied: python-dateutil&gt;=2.7 in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from matplotlib&gt;=3.10-&gt;pydtmc) (2.9.0.post0)
+Requirement already satisfied: six&gt;=1.5 in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from python-dateutil&gt;=2.7-&gt;matplotlib&gt;=3.10-&gt;pydtmc) (1.17.0)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ── 6-state textbook matrix (Figure 6.3, p.262) ───────────────────────────</span>
+<span class="n">P6</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span> <span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">9</span><span class="o">/</span><span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">10</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+<span class="p">]</span>
+<span class="n">s6</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;1&#39;</span><span class="p">,</span><span class="s1">&#39;2&#39;</span><span class="p">,</span><span class="s1">&#39;3&#39;</span><span class="p">,</span><span class="s1">&#39;4&#39;</span><span class="p">,</span><span class="s1">&#39;5&#39;</span><span class="p">,</span><span class="s1">&#39;6&#39;</span><span class="p">]</span>
+<span class="n">mc6</span> <span class="o">=</span> <span class="n">MarkovChain</span><span class="p">(</span><span class="n">P6</span><span class="p">,</span> <span class="n">s6</span><span class="p">)</span>
+
+<span class="c1"># ── pydtmc classification (one-line) ─────────────────────────────────────</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;=== 6.4 State Classification (Figure 6.3, p.262) ===&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  recurrent_states:  </span><span class="si">{</span><span class="n">mc6</span><span class="o">.</span><span class="n">recurrent_states</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  transient_states:  </span><span class="si">{</span><span class="n">mc6</span><span class="o">.</span><span class="n">transient_states</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  absorbing_states:  </span><span class="si">{</span><span class="n">mc6</span><span class="o">.</span><span class="n">absorbing_states</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  is_irreducible:    </span><span class="si">{</span><span class="n">mc6</span><span class="o">.</span><span class="n">is_irreducible</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  is_ergodic:        </span><span class="si">{</span><span class="n">mc6</span><span class="o">.</span><span class="n">is_ergodic</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  period:            </span><span class="si">{</span><span class="n">mc6</span><span class="o">.</span><span class="n">period</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">  Textbook: S1,S2 transient; S3,S4,S5 recurrent; S6 absorbing  ✓&#39;</span><span class="p">)</span>
+
+<span class="c1"># ── Algebraic verification via reachability matrix P^50 ───────────────────</span>
+<span class="n">P6_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">P6</span><span class="p">)</span>
+<span class="n">P6_50</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">matrix_power</span><span class="p">(</span><span class="n">P6_arr</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Reachability matrix (P^50 &gt; 1e-9 = reachable):&#39;</span><span class="p">)</span>
+<span class="n">reach</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">(</span><span class="n">P6_50</span> <span class="o">&gt;</span> <span class="mf">1e-9</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="n">s6</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">s6</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">reach</span><span class="o">.</span><span class="n">to_string</span><span class="p">())</span>
+
+<span class="c1"># ── Figure 6.3 — state diagram ────────────────────────────────────────────</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Figure 6.3 — Transition Diagram:&#39;</span><span class="p">)</span>
+<span class="n">plot_graph</span><span class="p">(</span><span class="n">mc6</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span> <span class="p">)</span>
+
+<span class="c1"># ── Also show Example 6.1 chain properties for comparison ─────────────────</span>
+<span class="n">mc_ex</span> <span class="o">=</span> <span class="n">MarkovChain</span><span class="p">([[</span><span class="mf">0.7</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.2</span><span class="p">],[</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.7</span><span class="p">,</span><span class="mf">0.1</span><span class="p">],[</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.3</span><span class="p">]],</span>
+                    <span class="p">[</span><span class="s1">&#39;Sunny&#39;</span><span class="p">,</span><span class="s1">&#39;Cloudy&#39;</span><span class="p">,</span><span class="s1">&#39;Snowing&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Example 6.1 chain properties:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  is_ergodic:    </span><span class="si">{</span><span class="n">mc_ex</span><span class="o">.</span><span class="n">is_ergodic</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  is_aperiodic:  </span><span class="si">{</span><span class="n">mc_ex</span><span class="o">.</span><span class="n">is_aperiodic</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  period:        </span><span class="si">{</span><span class="n">mc_ex</span><span class="o">.</span><span class="n">period</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  recurrent:     </span><span class="si">{</span><span class="n">mc_ex</span><span class="o">.</span><span class="n">recurrent_states</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  transient:     </span><span class="si">{</span><span class="n">mc_ex</span><span class="o">.</span><span class="n">transient_states</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== 6.4 State Classification (Figure 6.3, p.262) ===
+  recurrent_states:  [&#39;3&#39;, &#39;4&#39;, &#39;5&#39;, &#39;6&#39;]
+  transient_states:  [&#39;1&#39;, &#39;2&#39;]
+  absorbing_states:  [&#39;6&#39;]
+  is_irreducible:    False
+  is_ergodic:        False
+  period:            1
+
+  Textbook: S1,S2 transient; S3,S4,S5 recurrent; S6 absorbing  ✓
+
+Reachability matrix (P^50 &gt; 1e-9 = reachable):
+   1  2  3  4  5  6
+1  0  0  1  1  1  1
+2  0  0  1  1  1  1
+3  0  0  1  1  1  0
+4  0  0  1  1  1  0
+5  0  0  1  1  1  0
+6  0  0  0  0  0  1
+
+Figure 6.3 — Transition Diagram:
+
+Example 6.1 chain properties:
+  is_ergodic:    True
+  is_aperiodic:  True
+  period:        1
+  recurrent:     [&#39;Sunny&#39;, &#39;Cloudy&#39;, &#39;Snowing&#39;]
+  transient:     []
+</pre></div>
+</div>
+<img alt="../../../_images/0d09f386439229557548b1c033a33518d19ee0755e29baae3539875681b350f6.png" src="../../../_images/0d09f386439229557548b1c033a33518d19ee0755e29baae3539875681b350f6.png" />
+</div>
+</div>
 </section>
 
     <script type="text/x-thebe-config">

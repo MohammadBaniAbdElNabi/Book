@@ -479,6 +479,55 @@
 
 
 
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/MohammadBaniAbdElNabi/Book/main?urlpath=tree/content/Ch_6/6_6/6_6.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Binder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Binder logo" src="../../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="initThebeSBT()"
+  class="btn btn-sm btn-launch-thebe dropdown-item"
+  title="Launch Thebe"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="btn__text-container">Live Code</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-download-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
     <i class="fas fa-download"></i>
@@ -487,7 +536,7 @@
       
       
       
-      <li><a href="../../../_sources/content/Ch_6/6_6/6_6.md" target="_blank"
+      <li><a href="../../../_sources/content/Ch_6/6_6/6_6.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -497,7 +546,7 @@
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -577,6 +626,7 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="expected-first-passage-times">
 <h1>6.6 EXPECTED FIRST PASSAGE TIMES<a class="headerlink" href="#expected-first-passage-times" title="Link to this heading">#</a></h1>
+<p><a class="reference external" href="https://colab.research.google.com/drive/1maLD6G3MO_CF4lRVmnNjZ8PovrMiO-Li?usp=sharing"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
 <p>We have defined the first passage time of changing from state <span class="math notranslate nohighlight">\(i\)</span> to state <span class="math notranslate nohighlight">\(j\)</span> to be the number of transitions made by a Markov process as it goes from state i to state j for the first time. If <span class="math notranslate nohighlight">\(\mathrm{i}=\mathrm{j}\)</span>, then first passage time is the number of steps before the process returns to the same state, and this is called the first recurrence time. We will denote the first passage time from state i to state j as <span class="math notranslate nohighlight">\(\mathrm{T}_{\mathrm{ij}}\)</span>.</p>
 <p>If the Markov process is certain to go from state i to state j eventually (given that the process ever enters state i ), then <span class="math notranslate nohighlight">\(\mathrm{T}_{\mathrm{ij}}\)</span> is a random variable. In Section 6.3, we discussed the first passage probability <span class="math notranslate nohighlight">\(\mathrm{f}^{(\mathrm{n})}{ }_{\mathrm{ij}}\)</span>, which is the probability that <span class="math notranslate nohighlight">\(\mathrm{T}_{\mathrm{ij}}=\mathrm{n}\)</span>.</p>
 <p>If a process in state i is not certain to ever reach state j , then</p>
@@ -648,6 +698,143 @@ m_{i j}=\left(p_{i j}+\sum_{\substack{k=1 \\ k \neq j}}^{N} p_{i k}\right)+\sum_
 \mathrm{m}_{32}=1+\mathrm{p}_{31} \mathrm{~m}_{12}+\mathrm{p}_{33} \mathrm{~m}_{32}
 \]</div>
 <p>We solve this system to find that <span class="math notranslate nohighlight">\(\mathrm{m}_{12}=8.1818, \mathrm{~m}_{32}=7.2727\)</span>, and <span class="math notranslate nohighlight">\(\mathrm{m}_{22}=3.3636\)</span>. Recall that we can also find <span class="math notranslate nohighlight">\(\mathrm{m}_{22}\)</span> more quickly as <span class="math notranslate nohighlight">\(1 / \Pi_{2}=1 / .2972973=3.3636\)</span>, if we have already computed the steady-state probabilities. Thus, cloudy conditions that change to sunny or snowy can be expected to return to cloudy after 3.3636 days.</p>
+<p><strong>Code Implementation</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>pydtmc
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydtmc</span><span class="w"> </span><span class="kn">import</span> <span class="n">MarkovChain</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydtmc.plotting</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_graph</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Defaulting to user installation because normal site-packages is not writeable
+Requirement already satisfied: pydtmc in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (9.0.0)
+Requirement already satisfied: matplotlib&gt;=3.10 in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from pydtmc) (3.10.8)
+Requirement already satisfied: networkx in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from pydtmc) (3.6.1)
+Requirement already satisfied: numpy in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from pydtmc) (2.4.6)
+Requirement already satisfied: scipy in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from pydtmc) (1.17.1)
+Requirement already satisfied: contourpy&gt;=1.0.1 in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from matplotlib&gt;=3.10-&gt;pydtmc) (1.3.3)
+Requirement already satisfied: cycler&gt;=0.10 in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from matplotlib&gt;=3.10-&gt;pydtmc) (0.12.1)
+Requirement already satisfied: fonttools&gt;=4.22.0 in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from matplotlib&gt;=3.10-&gt;pydtmc) (4.61.1)
+Requirement already satisfied: kiwisolver&gt;=1.3.1 in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from matplotlib&gt;=3.10-&gt;pydtmc) (1.4.9)
+Requirement already satisfied: packaging&gt;=20.0 in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from matplotlib&gt;=3.10-&gt;pydtmc) (26.2)
+Requirement already satisfied: pillow&gt;=8 in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from matplotlib&gt;=3.10-&gt;pydtmc) (9.5.0)
+Requirement already satisfied: pyparsing&gt;=3 in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from matplotlib&gt;=3.10-&gt;pydtmc) (3.2.5)
+Requirement already satisfied: python-dateutil&gt;=2.7 in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from matplotlib&gt;=3.10-&gt;pydtmc) (2.9.0.post0)
+Requirement already satisfied: six&gt;=1.5 in C:\Users\mhamm\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages (from python-dateutil&gt;=2.7-&gt;matplotlib&gt;=3.10-&gt;pydtmc) (1.17.0)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">P</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.7</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.2</span><span class="p">],[</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.7</span><span class="p">,</span><span class="mf">0.1</span><span class="p">],[</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.3</span><span class="p">]])</span>
+<span class="n">states</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Sunny&#39;</span><span class="p">,</span><span class="s1">&#39;Cloudy&#39;</span><span class="p">,</span><span class="s1">&#39;Snowing&#39;</span><span class="p">]</span>
+<span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
+<span class="n">Pi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5135135</span><span class="p">,</span> <span class="mf">0.2972973</span><span class="p">,</span> <span class="mf">0.1891892</span><span class="p">])</span>
+
+<span class="c1"># ── Method 1: Textbook explicit system for m_i1 (p.267) ─────────────────</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;=== 6.6 Expected First Passage Times (p.267) ===&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Textbook system for m_31 and m_21 (→ Sunny):&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  (1-p33)·m31 - p32·m21 = 1  →  </span><span class="si">{</span><span class="mi">1</span><span class="o">-</span><span class="n">P</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">·m31 - </span><span class="si">{</span><span class="n">P</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">·m21 = 1&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  -p23·m31 + (1-p22)·m21 = 1  → -</span><span class="si">{</span><span class="n">P</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">·m31 + </span><span class="si">{</span><span class="mi">1</span><span class="o">-</span><span class="n">P</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">·m21 = 1&#39;</span><span class="p">)</span>
+
+<span class="n">A_m31</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="o">-</span><span class="n">P</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> <span class="o">-</span><span class="n">P</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]],</span>
+                  <span class="p">[</span><span class="o">-</span><span class="n">P</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span>  <span class="mi">1</span><span class="o">-</span><span class="n">P</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]]])</span>
+<span class="n">m31</span><span class="p">,</span> <span class="n">m21</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A_m31</span><span class="p">,</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">  m31 (Snowing→Sunny) = </span><span class="si">{</span><span class="n">m31</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">   Textbook: 2.6316  &#39;</span>
+      <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="s2">&quot;✓&quot;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="nb">abs</span><span class="p">(</span><span class="n">m31</span><span class="o">-</span><span class="mf">2.6316</span><span class="p">)</span><span class="o">&lt;</span><span class="mf">0.001</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s2">&quot;✗&quot;</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  m21 (Cloudy→Sunny)  = </span><span class="si">{</span><span class="n">m21</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">   Textbook: 4.2105  &#39;</span>
+      <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="s2">&quot;✓&quot;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="nb">abs</span><span class="p">(</span><span class="n">m21</span><span class="o">-</span><span class="mf">4.2105</span><span class="p">)</span><span class="o">&lt;</span><span class="mf">0.001</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s2">&quot;✗&quot;</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># ── Method 2: General linear system for full M matrix ────────────────────</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">mfpt_matrix</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">Pi</span><span class="p">):</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">P</span><span class="p">)</span>
+    <span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="p">,</span><span class="n">N</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+        <span class="n">non_j</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span><span class="o">!=</span><span class="n">j</span><span class="p">]</span>
+        <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">non_j</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">row</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">non_j</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">col</span><span class="p">,</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">non_j</span><span class="p">):</span>
+                <span class="n">A</span><span class="p">[</span><span class="n">row</span><span class="p">,</span><span class="n">col</span><span class="p">]</span> <span class="o">-=</span> <span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">k</span><span class="p">]</span>
+        <span class="n">m_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">non_j</span><span class="p">)))</span>
+        <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">non_j</span><span class="p">):</span>
+            <span class="n">M</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">m_vals</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+        <span class="n">M</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span><span class="o">/</span><span class="n">Pi</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">M</span>
+
+<span class="n">M</span> <span class="o">=</span> <span class="n">mfpt_matrix</span><span class="p">(</span><span class="n">P</span><span class="p">,</span> <span class="n">Pi</span><span class="p">)</span>
+<span class="n">M_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;From </span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">states</span><span class="p">],</span>
+                    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;To </span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">states</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Full Expected First Passage Time Matrix M (algebraic):&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">M_df</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">to_string</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;  (Diagonal = recurrence times = 1/Π)&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">  m12=</span><span class="si">{</span><span class="n">M</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">  m32=</span><span class="si">{</span><span class="n">M</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">  m22=</span><span class="si">{</span><span class="n">M</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  Textbook: 8.1818, 7.2727, 3.3636  &#39;</span>
+      <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="s2">&quot;✓&quot;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="nb">abs</span><span class="p">(</span><span class="n">M</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="mf">8.1818</span><span class="p">)</span><span class="o">&lt;</span><span class="mf">0.001</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s2">&quot;✗&quot;</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># ── Method 3: pydtmc ─────────────────────────────────────────────────────</span>
+<span class="n">mc</span> <span class="o">=</span> <span class="n">MarkovChain</span><span class="p">(</span><span class="n">P</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="n">states</span><span class="p">)</span>
+<span class="n">mrt</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">mean_recurrence_times</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Mean recurrence times via pydtmc:&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">s</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">states</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;  m_</span><span class="si">{</span><span class="n">s</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span><span class="si">}{</span><span class="n">s</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="s1"> = </span><span class="si">{</span><span class="n">mrt</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">   (= 1/Π = </span><span class="si">{</span><span class="mi">1</span><span class="o">/</span><span class="n">Pi</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Mean first passage times via pydtmc:&#39;</span><span class="p">)</span>
+<span class="n">M_lib</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">N</span><span class="p">,</span><span class="n">N</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">j</span><span class="p">,</span><span class="n">sj</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">states</span><span class="p">):</span>
+    <span class="n">fpt</span> <span class="o">=</span> <span class="n">mc</span><span class="o">.</span><span class="n">mean_first_passage_times_to</span><span class="p">(</span><span class="n">sj</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+        <span class="n">M_lib</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">fpt</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">if</span> <span class="n">i</span><span class="o">!=</span><span class="n">j</span> <span class="k">else</span> <span class="n">mrt</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+<span class="n">M_lib_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">M_lib</span><span class="p">,</span>
+    <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;From </span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">states</span><span class="p">],</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;To </span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">states</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">M_lib_df</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">to_string</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">  All match algebraic solution: &#39;</span>
+      <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="s2">&quot;✓&quot;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">M</span><span class="p">,</span><span class="w"> </span><span class="n">M_lib</span><span class="p">,</span><span class="w"> </span><span class="n">atol</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">)</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s2">&quot;✗&quot;</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>=== 6.6 Expected First Passage Times (p.267) ===
+
+Textbook system for m_31 and m_21 (→ Sunny):
+  (1-p33)·m31 - p32·m21 = 1  →  0.7·m31 - 0.2·m21 = 1
+  -p23·m31 + (1-p22)·m21 = 1  → -0.1·m31 + 0.3·m21 = 1
+
+  m31 (Snowing→Sunny) = 2.6316   Textbook: 2.6316  ✓
+  m21 (Cloudy→Sunny)  = 4.2105   Textbook: 4.2105  ✓
+
+Full Expected First Passage Time Matrix M (algebraic):
+              To Sunny  To Cloudy  To Snowing
+From Sunny      1.9474     8.1818      5.7143
+From Cloudy     4.2105     3.3636      7.1429
+From Snowing    2.6316     7.2727      5.2857
+  (Diagonal = recurrence times = 1/Π)
+
+  m12=8.1818  m32=7.2727  m22=3.3636
+  Textbook: 8.1818, 7.2727, 3.3636  ✓
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean recurrence times via pydtmc:
+  m_SuSu = 1.9474   (= 1/Π = 1.9474)
+  m_ClCl = 3.3636   (= 1/Π = 3.3636)
+  m_SnSn = 5.2857   (= 1/Π = 5.2857)
+
+Mean first passage times via pydtmc:
+              To Sunny  To Cloudy  To Snowing
+From Sunny      1.9474     8.1818      5.7143
+From Cloudy     4.2105     3.3636      7.1429
+From Snowing    2.6316     7.2727      5.2857
+
+  All match algebraic solution: ✓
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 
     <script type="text/x-thebe-config">
