@@ -149,13 +149,13 @@ parts:
   - file: content/Ch_5/5_6/References.md
 - caption: Chapter 6 - Markov Processes
   chapters:
-  - file: content/Ch_6/6_1/6_1
-  - file: content/Ch_6/6_2/6_2
-  - file: content/Ch_6/6_3/6_3
-  - file: content/Ch_6/6_4/6_4
-  - file: content/Ch_6/6_5/6_5
-  - file: content/Ch_6/6_6/6_6
-  - file: content/Ch_6/6_7/6_7
+  - file: content/Ch_6/6_1/6_1.ipynb
+  - file: content/Ch_6/6_2/6_2.ipynb
+  - file: content/Ch_6/6_3/6_3.ipynb
+  - file: content/Ch_6/6_4/6_4.ipynb
+  - file: content/Ch_6/6_5/6_5.ipynb
+  - file: content/Ch_6/6_6/6_6.ipynb
+  - file: content/Ch_6/6_7/6_7.ipynb
   - file: content/Ch_6/6_8/6_8
   - file: content/Ch_6/6_9/6_9_1
   - file: content/Ch_6/6_9/6_9_2

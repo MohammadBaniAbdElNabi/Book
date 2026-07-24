@@ -37,8 +37,8 @@ nbclient.exceptions.CellTimeoutError: A cell timed out while it was being execut
 The message was: Cell execution timed out.
 Here is a preview of the cell contents:
 -------------------
-['# ─────────────────────────────────────────────────────────────', '# PART 2 — Target-Level Utility Curve', '# ─────────────────────────────────────────────────────────────', '', 'target = widgets.FloatSlider(']
+['# ─────────────────────────────────────────────────────────────', '# PART 3 — Zero-Illusion Utility Curve', '# ─────────────────────────────────────────────────────────────', '', 'zero_point = widgets.FloatSlider(']
 ...
-["steepness.observe(update_target, names='value')", '', 'display(Markdown("## Part 2 — Utility Curve with a Target Level"))', 'display(widgets.VBox([target, steepness]), out_target)', 'draw_target_curve(target.value, steepness.value)']
+["loss_aversion.observe(update_zero, names='value')", '', 'display(Markdown("## Part 3 — Zero-Illusion Utility Curve"))', 'display(widgets.VBox([zero_point, loss_aversion]), out_zero)', 'draw_zero_illusion(zero_point.value, loss_aversion.value)']
 -------------------
 
